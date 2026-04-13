@@ -108,6 +108,16 @@ cd src/packages/edtsChartGraph
 npm install apexcharts react-apexcharts
 ```
 
+Contoh lain kalau widget memakai library third-party seperti calendar:
+
+```bash
+cd src/packages/edtsCalendar
+npm install @fullcalendar/core @fullcalendar/react @fullcalendar/daygrid @fullcalendar/timegrid @fullcalendar/interaction @fullcalendar/list
+```
+
+Catatan:
+install dependency third-party sebaiknya dilakukan di package widget yang memakainya, bukan di root, supaya dependency tetap terisolasi dan mudah dikelola.
+
 ## 🚀 Menjalankan Script Root
 
 Jalankan semua package sekaligus dari root:
@@ -228,6 +238,16 @@ npm run build
 ```bash
 cd src/packages/edtsDetailCard
 npm install
+npm run build
+```
+
+Kalau package tertentu butuh third-party library tambahan, install langsung di package tersebut.
+
+Contoh:
+
+```bash
+cd src/packages/edtsCalendar
+npm install @fullcalendar/core @fullcalendar/react @fullcalendar/daygrid @fullcalendar/timegrid @fullcalendar/interaction @fullcalendar/list
 npm run build
 ```
 
