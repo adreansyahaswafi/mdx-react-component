@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="edts-mendix.edtsbutton.EdtsButton" pluginWidget="true" needsEntityContext="false" offlineCapable="true" supportedPlatform="Web"
+    xmlns="http://www.mendix.com/widget/1.0/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/@mendix/pluggable-widgets-api/widget.xsd">
+
+    <name>EdtsButton</name>
+    <description>Bootstrap-style button widget with configurable variant, width, and click action.</description>
+    <icon />
+
+    <properties>
+        <propertyGroup caption="Content">
+            <property key="caption" type="string" required="true" defaultValue="Button">
+                <caption>Caption</caption>
+                <description>Text shown inside the button.</description>
+            </property>
+
+            <property key="leftIcon" type="enumeration" required="true" defaultValue="none">
+                <caption>Left Icon</caption>
+                <description>Optional icon shown before the caption.</description>
+                <enumerationValues>
+                    <enumerationValue key="none">None</enumerationValue>
+                    <enumerationValue key="plus">Plus</enumerationValue>
+                    <enumerationValue key="check">Check</enumerationValue>
+                    <enumerationValue key="search">Search</enumerationValue>
+                    <enumerationValue key="download">Download</enumerationValue>
+                    <enumerationValue key="login">Login</enumerationValue>
+                    <enumerationValue key="logout">Logout</enumerationValue>
+                </enumerationValues>
+            </property>
+        </propertyGroup>
+
+        <propertyGroup caption="Style">
+            <property key="variant" type="enumeration" required="true" defaultValue="primary">
+                <caption>Variant</caption>
+                <description>Bootstrap-inspired visual style.</description>
+                <enumerationValues>
+                    <enumerationValue key="primary">Primary</enumerationValue>
+                    <enumerationValue key="secondary">Secondary</enumerationValue>
+                    <enumerationValue key="success">Success</enumerationValue>
+                    <enumerationValue key="danger">Danger</enumerationValue>
+                    <enumerationValue key="warning">Warning</enumerationValue>
+                    <enumerationValue key="info">Info</enumerationValue>
+                    <enumerationValue key="light">Light</enumerationValue>
+                    <enumerationValue key="dark">Dark</enumerationValue>
+                    <enumerationValue key="link">Link</enumerationValue>
+                </enumerationValues>
+            </property>
+
+            <property key="outline" type="boolean" required="true" defaultValue="false">
+                <caption>Outline</caption>
+                <description>Render the selected variant using an outline style.</description>
+            </property>
+
+            <property key="size" type="enumeration" required="true" defaultValue="md">
+                <caption>Size</caption>
+                <description>Choose the button size.</description>
+                <enumerationValues>
+                    <enumerationValue key="sm">Small</enumerationValue>
+                    <enumerationValue key="md">Medium</enumerationValue>
+                    <enumerationValue key="lg">Large</enumerationValue>
+                </enumerationValues>
+            </property>
+
+            <property key="fullWidth" type="boolean" required="true" defaultValue="false">
+                <caption>Full Width</caption>
+                <description>Expand the button to the full available width.</description>
+            </property>
+        </propertyGroup>
+
+        <propertyGroup caption="Behavior">
+            <property key="buttonType" type="enumeration" required="true" defaultValue="button">
+                <caption>Button Type</caption>
+                <description>Native HTML button type.</description>
+                <enumerationValues>
+                    <enumerationValue key="button">Button</enumerationValue>
+                    <enumerationValue key="submit">Submit</enumerationValue>
+                    <enumerationValue key="reset">Reset</enumerationValue>
+                </enumerationValues>
+            </property>
+
+            <property key="disabled" type="boolean" required="true" defaultValue="false">
+                <caption>Disabled</caption>
+                <description>Disable user interaction.</description>
+            </property>
+
+            <property key="loading" type="boolean" required="true" defaultValue="false">
+                <caption>Loading</caption>
+                <description>Show a loading spinner and block clicks.</description>
+            </property>
+
+            <property key="onClickAction" type="action" required="false">
+                <caption>On Click</caption>
+                <description>Action executed when the button is clicked.</description>
+            </property>
+        </propertyGroup>
+    </properties>
+</widget>

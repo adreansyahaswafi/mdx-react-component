@@ -1,0 +1,139 @@
+.edts-form-login {
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: transparent;
+    color: #0f172a;
+}
+
+.edts-form-login--compact {
+    gap: 16px;
+}
+
+.edts-form-login__topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+}
+
+.edts-form-login__link {
+    border: 0;
+    background: transparent;
+    color: #1d4ed8;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+    padding: 0;
+    cursor: pointer;
+    transition: color 0.18s ease, transform 0.18s ease;
+}
+
+.edts-form-login__link:hover,
+.edts-form-login__link:focus {
+    color: #1732a8;
+    transform: translateY(-1px);
+    outline: none;
+}
+
+.edts-form-login__link--right {
+    text-align: right;
+}
+
+.edts-form-login__intro {
+    display: grid;
+    gap: 8px;
+}
+
+.edts-form-login__title {
+    margin: 0;
+    color: #101827;
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+}
+
+.edts-form-login__description {
+    margin: 0;
+    color: #64748b;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.edts-form-login__body {
+    display: grid;
+    width: 100%;
+}
+
+.edts-form-login__actions {
+    position: sticky;
+    bottom: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    padding: 16px 0 0;
+    margin-top: auto;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0), #ffffff 42%);
+}
+
+.edts-form-login__button {
+    min-width: 168px;
+    min-height: 48px;
+    border-radius: 0;
+    border: 1px solid transparent;
+    padding: 12px 24px;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.2;
+    cursor: pointer;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.edts-form-login__button:hover,
+.edts-form-login__button:focus {
+    transform: translateY(-1px);
+    outline: none;
+}
+
+.edts-form-login__button--primary {
+    width: 100%;
+    background: #1e40af;
+    color: #ffffff;
+    box-shadow: 0 14px 28px rgba(30, 64, 175, 0.22);
+}
+
+.edts-form-login__button--primary:hover,
+.edts-form-login__button--primary:focus {
+    background: #1d4ed8;
+    box-shadow: 0 18px 32px rgba(30, 64, 175, 0.28);
+}
+
+.edts-form-login__button--secondary {
+    background: #ffffff;
+    border-color: #cbd5e1;
+    color: #334155;
+}
+
+@media (max-width: 640px) {
+    .edts-form-login__topbar {
+        align-items: flex-start;
+    }
+
+    .edts-form-login__link {
+        font-size: 16px;
+    }
+
+    .edts-form-login__actions {
+        flex-direction: column-reverse;
+    }
+
+    .edts-form-login__button {
+        width: 100%;
+    }
+}

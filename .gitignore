@@ -1,0 +1,7 @@
+node_modules/
+**/node_modules/
+package-lock.json
+CODE.md
+
+src/packages/**/dist/
+playground/dist/

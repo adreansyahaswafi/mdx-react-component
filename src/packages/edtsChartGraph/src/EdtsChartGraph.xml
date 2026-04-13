@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="edts-mendix.edtschartgraph.EdtsChartGraph" pluginWidget="true" needsEntityContext="true" offlineCapable="true" supportedPlatform="Web"
+    xmlns="http://www.mendix.com/widget/1.0/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/@mendix/pluggable-widgets-api/widget.xsd">
+
+    <name>Edts Chart Graph</name>
+    <description>Render ApexCharts graphs from a Mendix datasource.</description>
+    <icon/>
+
+    <properties>
+        <propertyGroup caption="Data Source">
+            <property key="dataSource" type="datasource" isList="true" required="true">
+                <caption>Data Source</caption>
+                <description>Select the datasource that provides the chart rows.</description>
+            </property>
+
+            <property key="labelAttr" type="attribute" dataSource="dataSource" required="true">
+                <caption>Label Attribute</caption>
+                <description>Select the attribute used for chart labels or categories.</description>
+                <attributeTypes>
+                    <attributeType name="String"/>
+                    <attributeType name="Enum"/>
+                </attributeTypes>
+            </property>
+
+            <property key="valueAttr" type="attribute" dataSource="dataSource" required="true">
+                <caption>Value Attribute</caption>
+                <description>Select the numeric attribute used for chart values.</description>
+                <attributeTypes>
+                    <attributeType name="Integer"/>
+                    <attributeType name="Long"/>
+                    <attributeType name="Decimal"/>
+                </attributeTypes>
+            </property>
+
+            <property key="colorAttr" type="attribute" dataSource="dataSource" required="false">
+                <caption>Color Attribute</caption>
+                <description>Optionally select a string attribute that stores the color for each row.</description>
+                <attributeTypes>
+                    <attributeType name="String"/>
+                </attributeTypes>
+            </property>
+        </propertyGroup>
+
+        <propertyGroup caption="Chart">
+            <property key="chartTitle" type="string" required="false">
+                <caption>Chart Title</caption>
+                <description>Optionally show a title above the chart.</description>
+            </property>
+
+            <property key="chartSubtitle" type="string" required="false">
+                <caption>Chart Subtitle</caption>
+                <description>Optionally show a subtitle below the chart title.</description>
+            </property>
+
+            <property key="seriesName" type="string" required="false">
+                <caption>Series Name</caption>
+                <description>Label used for the chart series in tooltips and legends.</description>
+            </property>
+
+            <property key="chartType" type="enumeration" required="true" defaultValue="bar">
+                <caption>Chart Type</caption>
+                <description>Select the ApexCharts visualization type.</description>
+                <enumerationValues>
+                    <enumerationValue key="bar">Bar</enumerationValue>
+                    <enumerationValue key="line">Line</enumerationValue>
+                    <enumerationValue key="area">Area</enumerationValue>
+                    <enumerationValue key="pie">Pie</enumerationValue>
+                    <enumerationValue key="donut">Donut</enumerationValue>
+                </enumerationValues>
+            </property>
+
+            <property key="height" type="integer" required="true" defaultValue="340">
+                <caption>Height</caption>
+                <description>Set the chart height in pixels.</description>
+            </property>
+
+            <property key="showLegend" type="boolean" required="true" defaultValue="true">
+                <caption>Show Legend</caption>
+                <description>Show or hide the chart legend.</description>
+            </property>
+
+            <property key="showToolbar" type="boolean" required="true" defaultValue="false">
+                <caption>Show Toolbar</caption>
+                <description>Show or hide the ApexCharts toolbar.</description>
+            </property>
+
+            <property key="showDataLabels" type="boolean" required="true" defaultValue="false">
+                <caption>Show Data Labels</caption>
+                <description>Show or hide values directly on the chart.</description>
+            </property>
+
+            <property key="useSmoothCurve" type="boolean" required="true" defaultValue="true">
+                <caption>Use Smooth Curve</caption>
+                <description>Use smooth line or area curves where applicable.</description>
+            </property>
+        </propertyGroup>
+    </properties>
+</widget>

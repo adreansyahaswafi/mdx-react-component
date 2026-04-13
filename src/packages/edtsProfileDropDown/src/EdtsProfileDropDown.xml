@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="edts-mendix.edtsprofiledropdown.EdtsProfileDropDown" pluginWidget="true" needsEntityContext="true" offlineCapable="true" supportedPlatform="Web"
+    xmlns="http://www.mendix.com/widget/1.0/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/@mendix/pluggable-widgets-api/widget.xsd">
+
+    <name>EdtsProfileDropDown</name>
+    <description>Profile dropdown widget with avatar, user details, and quick actions.</description>
+    <icon />
+
+    <properties>
+        <propertyGroup caption="Current Object Binding">
+            <property key="avatarImageUrlContextAttr" type="attribute" required="false">
+                <caption>Avatar Image URL Attribute</caption>
+                <description>Optional current object string attribute that contains an avatar image URL.</description>
+                <attributeTypes>
+                    <attributeType name="String" />
+                </attributeTypes>
+            </property>
+
+            <property key="avatarTextContextAttr" type="attribute" required="false">
+                <caption>Avatar Text Attribute</caption>
+                <description>Optional current object string attribute used for avatar initials.</description>
+                <attributeTypes>
+                    <attributeType name="String" />
+                </attributeTypes>
+            </property>
+
+            <property key="firstNameContextAttr" type="attribute" required="false">
+                <caption>First Name Attribute</caption>
+                <description>Optional current object string attribute for the first name.</description>
+                <attributeTypes>
+                    <attributeType name="String" />
+                </attributeTypes>
+            </property>
+
+            <property key="lastNameContextAttr" type="attribute" required="false">
+                <caption>Last Name Attribute</caption>
+                <description>Optional current object string attribute for the last name.</description>
+                <attributeTypes>
+                    <attributeType name="String" />
+                </attributeTypes>
+            </property>
+
+            <property key="emailContextAttr" type="attribute" required="false">
+                <caption>Email Attribute</caption>
+                <description>Optional current object string attribute for the email address.</description>
+                <attributeTypes>
+                    <attributeType name="String" />
+                </attributeTypes>
+            </property>
+
+            <property key="roleLabelContextAttr" type="attribute" required="false">
+                <caption>Role Label Attribute</caption>
+                <description>Optional current object string attribute for subtitle shown in the trigger only.</description>
+                <attributeTypes>
+                    <attributeType name="String" />
+                </attributeTypes>
+            </property>
+        </propertyGroup>
+
+        <propertyGroup caption="Profile">
+            <property key="avatarContent" type="widgets" required="false">
+                <caption>Avatar Content</caption>
+                <description>Optional custom image/avatar content rendered in the trigger and dropdown header.</description>
+            </property>
+
+            <property key="avatarImageUrl" type="string" required="false">
+                <caption>Avatar Image URL</caption>
+                <description>Optional fallback avatar image URL shown when no current object image URL attribute is provided.</description>
+            </property>
+
+            <property key="avatarText" type="string" required="true">
+                <caption>Avatar Text</caption>
+                <description>Fallback avatar text shown when no current object attribute or image content is provided.</description>
+            </property>
+
+            <property key="firstName" type="string" required="false">
+                <caption>First Name</caption>
+                <description>Fallback first name shown when no current object first name attribute is provided.</description>
+            </property>
+
+            <property key="lastName" type="string" required="false">
+                <caption>Last Name</caption>
+                <description>Fallback last name shown when no current object last name attribute is provided.</description>
+            </property>
+
+            <property key="email" type="string" required="false">
+                <caption>Email</caption>
+                <description>Fallback email shown inside the dropdown body.</description>
+            </property>
+
+            <property key="roleLabel" type="string" required="false">
+                <caption>Role Label</caption>
+                <description>Fallback subtitle shown in the trigger only.</description>
+            </property>
+        </propertyGroup>
+
+        <propertyGroup caption="Actions">
+            <property key="primaryActionCaption" type="string" required="true">
+                <caption>Primary Action Caption</caption>
+                <description>Caption for the first quick action row.</description>
+            </property>
+
+            <property key="logoutCaption" type="string" required="true">
+                <caption>Logout Caption</caption>
+                <description>Caption for the logout action row.</description>
+            </property>
+
+            <property key="onPrimaryAction" type="action" required="false">
+                <caption>On Primary Action</caption>
+                <description>Action executed when the primary quick action is clicked.</description>
+            </property>
+
+            <property key="onLogoutAction" type="action" required="false">
+                <caption>On Logout Action</caption>
+                <description>Action executed when the logout action is clicked.</description>
+            </property>
+        </propertyGroup>
+
+        <propertyGroup caption="Appearance">
+            <property key="compact" type="boolean" required="true" defaultValue="false">
+                <caption>Compact Layout</caption>
+                <description>Use tighter spacing for narrow topbars.</description>
+            </property>
+
+            <property key="align" type="enumeration" required="true" defaultValue="right">
+                <caption>Dropdown Align</caption>
+                <description>Choose where the dropdown opens relative to the trigger.</description>
+                <enumerationValues>
+                    <enumerationValue key="left">Left</enumerationValue>
+                    <enumerationValue key="right">Right</enumerationValue>
+                </enumerationValues>
+            </property>
+        </propertyGroup>
+    </properties>
+</widget>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="edts-mendix.edtsselectbox.EdtsSelectBox" pluginWidget="true" needsEntityContext="true" offlineCapable="true" supportedPlatform="Web"
+    xmlns="http://www.mendix.com/widget/1.0/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/@mendix/pluggable-widgets-api/widget.xsd">
+
+    <name>EdtsSelectBox</name>
+    <description>Bootstrap-style combo box using react-select with support for association, enumeration, and boolean values.</description>
+    <icon/>
+
+    <properties>
+        <propertyGroup caption="Data Source">
+            <property key="selectType" type="enumeration" required="true" defaultValue="association">
+                <caption>Type</caption>
+                <description>Choose how the select box stores its selected value.</description>
+                <enumerationValues>
+                    <enumerationValue key="association">Association</enumerationValue>
+                    <enumerationValue key="enumeration">Enumeration</enumerationValue>
+                    <enumerationValue key="boolean">Boolean</enumerationValue>
+                </enumerationValues>
+            </property>
+
+            <property key="associationValue" type="association" required="false" selectableObjects="optionsSource">
+                <caption>Association</caption>
+                <description>Select the reference association on the current object.</description>
+                <associationTypes>
+                    <associationType name="Reference"/>
+                </associationTypes>
+            </property>
+
+            <property key="valueAttribute" type="attribute" required="false">
+                <caption>Value Attribute</caption>
+                <description>Select the enum or boolean attribute on the current object.</description>
+                <attributeTypes>
+                    <attributeType name="Enum"/>
+                    <attributeType name="Boolean"/>
+                    <attributeType name="String"/>
+                </attributeTypes>
+            </property>
+
+            <property key="optionsSource" type="datasource" isList="true" required="false">
+                <caption>Selectable Objects</caption>
+                <description>Select the datasource that provides the association options.</description>
+            </property>
+        </propertyGroup>
+
+        <propertyGroup caption="Caption">
+            <property key="optionLabelAttr" type="attribute" dataSource="optionsSource" required="false">
+                <caption>Caption Attribute</caption>
+                <description>Select the string or enum attribute shown in the dropdown for association options.</description>
+                <attributeTypes>
+                    <attributeType name="String"/>
+                    <attributeType name="Enum"/>
+                </attributeTypes>
+            </property>
+        </propertyGroup>
+
+        <propertyGroup caption="Appearance">
+            <property key="label" type="string" required="false">
+                <caption>Label</caption>
+                <description>Optional field label shown above the select box.</description>
+            </property>
+
+            <property key="placeholder" type="string" required="false">
+                <caption>Placeholder</caption>
+                <description>Optional placeholder shown before a value is selected.</description>
+            </property>
+
+            <property key="helperText" type="string" required="false">
+                <caption>Helper Text</caption>
+                <description>Optional helper text shown below the select box when there is no validation error.</description>
+            </property>
+
+            <property key="trueCaption" type="string" required="true" defaultValue="True">
+                <caption>True Caption</caption>
+                <description>Caption used for the boolean true option.</description>
+            </property>
+
+            <property key="falseCaption" type="string" required="true" defaultValue="False">
+                <caption>False Caption</caption>
+                <description>Caption used for the boolean false option.</description>
+            </property>
+
+            <property key="isClearable" type="boolean" required="true" defaultValue="true">
+                <caption>Allow Clear</caption>
+                <description>Allow the user to clear the selected option.</description>
+            </property>
+
+            <property key="isSearchable" type="boolean" required="true" defaultValue="true">
+                <caption>Allow Search</caption>
+                <description>Allow the user to search inside the dropdown.</description>
+            </property>
+        </propertyGroup>
+
+        <propertyGroup caption="Validation">
+            <property key="required" type="boolean" required="true" defaultValue="false">
+                <caption>Required</caption>
+                <description>Require the user to select a value.</description>
+            </property>
+
+            <property key="requiredMessage" type="string" required="true" defaultValue="This field is required.">
+                <caption>Required Message</caption>
+                <description>Message shown when the required rule fails.</description>
+            </property>
+
+            <property key="validateOnChange" type="boolean" required="true" defaultValue="true">
+                <caption>Validate On Change</caption>
+                <description>Validate as soon as the selected value changes.</description>
+            </property>
+        </propertyGroup>
+
+        <propertyGroup caption="Behavior">
+            <property key="onChangeAction" type="action" required="false">
+                <caption>On Change</caption>
+                <description>Optional action executed after the selected value changes.</description>
+            </property>
+
+            <property key="onBlurAction" type="action" required="false">
+                <caption>On Blur</caption>
+                <description>Optional action executed when the select box loses focus.</description>
+            </property>
+        </propertyGroup>
+    </properties>
+</widget>

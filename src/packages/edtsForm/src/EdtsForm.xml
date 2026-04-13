@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="edts-mendix.edtsform.EdtsForm" pluginWidget="true" needsEntityContext="true" offlineCapable="true" supportedPlatform="Web"
+    xmlns="http://www.mendix.com/widget/1.0/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/@mendix/pluggable-widgets-api/widget.xsd">
+
+    <name>EdtsForm</name>
+    <description>Reusable form wrapper with content area and submit or cancel actions.</description>
+    <icon />
+
+    <properties>
+        <propertyGroup caption="Header">
+            <property key="title" type="string" required="false">
+                <caption>Title</caption>
+                <description>Optional form title shown at the top of the wrapper.</description>
+            </property>
+
+            <property key="description" type="string" required="false">
+                <caption>Description</caption>
+                <description>Optional supporting text shown below the title.</description>
+            </property>
+        </propertyGroup>
+
+        <propertyGroup caption="Content">
+            <property key="content" type="widgets" required="false">
+                <caption>Content</caption>
+                <description>Place form fields and custom widgets inside this content area.</description>
+            </property>
+        </propertyGroup>
+
+        <propertyGroup caption="Actions">
+            <property key="submitCaption" type="string" required="true" defaultValue="Submit">
+                <caption>Submit Caption</caption>
+                <description>Caption shown on the primary submit button.</description>
+            </property>
+
+            <property key="cancelCaption" type="string" required="true" defaultValue="Cancel">
+                <caption>Cancel Caption</caption>
+                <description>Caption shown on the cancel button.</description>
+            </property>
+
+            <property key="showCancelButton" type="boolean" required="true" defaultValue="false">
+                <caption>Show Cancel Button</caption>
+                <description>Show or hide the cancel action button.</description>
+            </property>
+
+            <property key="submitOnEnter" type="boolean" required="true" defaultValue="true">
+                <caption>Submit On Enter</caption>
+                <description>Submit the form when the user presses Enter inside the wrapper.</description>
+            </property>
+
+            <property key="onSubmitAction" type="action" required="false">
+                <caption>On Submit</caption>
+                <description>Action executed when the submit button is clicked or Enter is pressed.</description>
+            </property>
+
+            <property key="onCancelAction" type="action" required="false">
+                <caption>On Cancel</caption>
+                <description>Action executed when the cancel button is clicked.</description>
+            </property>
+        </propertyGroup>
+
+        <propertyGroup caption="Appearance">
+            <property key="showFooter" type="boolean" required="true" defaultValue="true">
+                <caption>Show Footer</caption>
+                <description>Show or hide the footer action bar.</description>
+            </property>
+
+            <property key="footerAlign" type="enumeration" required="true" defaultValue="right">
+                <caption>Footer Align</caption>
+                <description>Choose whether the footer buttons are aligned to the left or right.</description>
+                <enumerationValues>
+                    <enumerationValue key="left">Left</enumerationValue>
+                    <enumerationValue key="right">Right</enumerationValue>
+                </enumerationValues>
+            </property>
+
+            <property key="fullWidthButtons" type="boolean" required="true" defaultValue="false">
+                <caption>Full Width Buttons</caption>
+                <description>Stretch footer action buttons to fill the available width.</description>
+            </property>
+
+            <property key="compact" type="boolean" required="true" defaultValue="false">
+                <caption>Compact Layout</caption>
+                <description>Use tighter spacing for smaller forms.</description>
+            </property>
+        </propertyGroup>
+    </properties>
+</widget>

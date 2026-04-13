@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="edts-mendix.edtsinput.EdtsInput" pluginWidget="true" needsEntityContext="true" offlineCapable="true" supportedPlatform="Web"
+    xmlns="http://www.mendix.com/widget/1.0/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/@mendix/pluggable-widgets-api/widget.xsd">
+
+    <name>EdtsInput</name>
+    <description>Modern form input with configurable validation rules and inline messages.</description>
+    <icon />
+
+    <properties>
+        <propertyGroup caption="Binding">
+            <property key="valueAttribute" type="attribute" required="true">
+                <caption>Value Attribute</caption>
+                <description>Select the string attribute from the current object that stores the input value.</description>
+                <attributeTypes>
+                    <attributeType name="String" />
+                </attributeTypes>
+            </property>
+
+            <property key="label" type="string" required="false">
+                <caption>Label</caption>
+                <description>Optional field label shown above the input.</description>
+            </property>
+
+            <property key="placeholder" type="string" required="false">
+                <caption>Placeholder</caption>
+                <description>Optional placeholder text shown inside the input.</description>
+            </property>
+
+            <property key="helperText" type="string" required="false">
+                <caption>Helper Text</caption>
+                <description>Optional helper text shown below the input when there is no validation error.</description>
+            </property>
+
+            <property key="inputType" type="enumeration" required="true" defaultValue="text">
+                <caption>Input Type</caption>
+                <description>Select the browser input type.</description>
+                <enumerationValues>
+                    <enumerationValue key="text">Text</enumerationValue>
+                    <enumerationValue key="email">Email</enumerationValue>
+                    <enumerationValue key="password">Password</enumerationValue>
+                    <enumerationValue key="tel">Telephone</enumerationValue>
+                    <enumerationValue key="url">URL</enumerationValue>
+                </enumerationValues>
+            </property>
+        </propertyGroup>
+
+        <propertyGroup caption="Validation Rules">
+            <property key="required" type="boolean" required="true" defaultValue="false">
+                <caption>Required</caption>
+                <description>Require the user to enter a value.</description>
+            </property>
+
+            <property key="minLength" type="integer" required="true" defaultValue="0">
+                <caption>Minimum Length</caption>
+                <description>Optional minimum number of characters.</description>
+            </property>
+
+            <property key="maxLength" type="integer" required="true" defaultValue="0">
+                <caption>Maximum Length</caption>
+                <description>Optional maximum number of characters.</description>
+            </property>
+
+            <property key="pattern" type="string" required="false">
+                <caption>Pattern</caption>
+                <description>Optional regular expression pattern used to validate the input value.</description>
+            </property>
+        </propertyGroup>
+
+        <propertyGroup caption="Validation Messages">
+            <property key="requiredMessage" type="string" required="true" defaultValue="This field is required.">
+                <caption>Required Message</caption>
+                <description>Message shown when the required rule fails.</description>
+            </property>
+
+            <property key="minLengthMessage" type="string" required="true" defaultValue="Please enter more characters.">
+                <caption>Minimum Length Message</caption>
+                <description>Message shown when the minimum length rule fails.</description>
+            </property>
+
+            <property key="maxLengthMessage" type="string" required="true" defaultValue="Please shorten this value.">
+                <caption>Maximum Length Message</caption>
+                <description>Message shown when the maximum length rule fails.</description>
+            </property>
+
+            <property key="patternMessage" type="string" required="true" defaultValue="The value format is invalid.">
+                <caption>Pattern Message</caption>
+                <description>Message shown when the regular expression rule fails.</description>
+            </property>
+        </propertyGroup>
+
+        <propertyGroup caption="Behavior">
+            <property key="validateOnChange" type="boolean" required="true" defaultValue="true">
+                <caption>Validate On Change</caption>
+                <description>Validate while the user is typing.</description>
+            </property>
+
+            <property key="onChangeAction" type="action" required="false">
+                <caption>On Change</caption>
+                <description>Optional action executed after the value changes.</description>
+            </property>
+
+            <property key="onBlurAction" type="action" required="false">
+                <caption>On Blur</caption>
+                <description>Optional action executed when the input loses focus.</description>
+            </property>
+        </propertyGroup>
+    </properties>
+</widget>

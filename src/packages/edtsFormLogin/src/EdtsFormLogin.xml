@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="edts-mendix.edtsformlogin.EdtsFormLogin" pluginWidget="true" needsEntityContext="true" offlineCapable="true" supportedPlatform="Web"
+    xmlns="http://www.mendix.com/widget/1.0/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/@mendix/pluggable-widgets-api/widget.xsd">
+
+    <name>EdtsFormLogin</name>
+    <description>Login form wrapper with draggable content and centered bottom action button.</description>
+    <icon />
+
+    <properties>
+        <propertyGroup caption="Header">
+            <property key="showHeader" type="boolean" required="true" defaultValue="false">
+                <caption>Show Header</caption>
+                <description>Show the top navigation row.</description>
+            </property>
+
+            <property key="backCaption" type="string" required="false">
+                <caption>Back Caption</caption>
+                <description>Caption for the top-left back action.</description>
+            </property>
+
+            <property key="helperCaption" type="string" required="false">
+                <caption>Helper Caption</caption>
+                <description>Optional top-right helper text.</description>
+            </property>
+
+            <property key="title" type="string" required="false">
+                <caption>Title</caption>
+                <description>Optional title above the content.</description>
+            </property>
+
+            <property key="description" type="string" required="false">
+                <caption>Description</caption>
+                <description>Optional description below the title.</description>
+            </property>
+        </propertyGroup>
+
+        <propertyGroup caption="Content">
+            <property key="content" type="widgets" required="false">
+                <caption>Content</caption>
+                <description>Drag login input widgets into this content area.</description>
+            </property>
+        </propertyGroup>
+
+        <propertyGroup caption="Actions">
+            <property key="submitCaption" type="string" required="true" defaultValue="Login">
+                <caption>Submit Caption</caption>
+                <description>Caption shown on the primary login button.</description>
+            </property>
+
+            <property key="secondaryCaption" type="string" required="true" defaultValue="Cancel">
+                <caption>Secondary Caption</caption>
+                <description>Caption shown on the secondary action button.</description>
+            </property>
+
+            <property key="showSecondaryButton" type="boolean" required="true" defaultValue="false">
+                <caption>Show Secondary Button</caption>
+                <description>Show or hide the secondary action button.</description>
+            </property>
+
+            <property key="submitOnEnter" type="boolean" required="true" defaultValue="true">
+                <caption>Submit On Enter</caption>
+                <description>Submit the form when Enter is pressed inside the wrapper.</description>
+            </property>
+
+            <property key="onBackAction" type="action" required="false">
+                <caption>On Back</caption>
+                <description>Action executed when the back caption is clicked.</description>
+            </property>
+
+            <property key="onHelperAction" type="action" required="false">
+                <caption>On Helper</caption>
+                <description>Action executed when the helper caption is clicked.</description>
+            </property>
+
+            <property key="onSubmitAction" type="action" required="false">
+                <caption>On Submit</caption>
+                <description>Action executed when the login button is clicked or Enter is pressed.</description>
+            </property>
+
+            <property key="onSecondaryAction" type="action" required="false">
+                <caption>On Secondary</caption>
+                <description>Action executed when the secondary button is clicked.</description>
+            </property>
+        </propertyGroup>
+
+        <propertyGroup caption="Toast Message">
+            <property key="showToastOnSubmit" type="boolean" required="true" defaultValue="true">
+                <caption>Show Toast On Submit</caption>
+                <description>Show a toast message when the submit button is clicked.</description>
+            </property>
+
+            <property key="toastMessage" type="string" required="false">
+                <caption>Toast Message</caption>
+                <description>Optional fallback message shown in the toast when the toast message attribute is empty.</description>
+            </property>
+
+            <property key="toastMessageAttribute" type="attribute" required="false">
+                <caption>Toast Message Attribute</caption>
+                <description>Optional string attribute used as the toast message. If empty, the static toast message is used.</description>
+                <attributeTypes>
+                    <attributeType name="String" />
+                </attributeTypes>
+            </property>
+
+            <property key="toastType" type="enumeration" required="true" defaultValue="error">
+                <caption>Toast Type</caption>
+                <description>Visual type for the toast message.</description>
+                <enumerationValues>
+                    <enumerationValue key="default">Default</enumerationValue>
+                    <enumerationValue key="success">Success</enumerationValue>
+                    <enumerationValue key="info">Info</enumerationValue>
+                    <enumerationValue key="warning">Warning</enumerationValue>
+                    <enumerationValue key="error">Error</enumerationValue>
+                </enumerationValues>
+            </property>
+
+            <property key="toastPosition" type="enumeration" required="true" defaultValue="topRight">
+                <caption>Toast Position</caption>
+                <description>Where the toast will appear.</description>
+                <enumerationValues>
+                    <enumerationValue key="topRight">Top Right</enumerationValue>
+                    <enumerationValue key="topCenter">Top Center</enumerationValue>
+                    <enumerationValue key="topLeft">Top Left</enumerationValue>
+                    <enumerationValue key="bottomRight">Bottom Right</enumerationValue>
+                    <enumerationValue key="bottomCenter">Bottom Center</enumerationValue>
+                    <enumerationValue key="bottomLeft">Bottom Left</enumerationValue>
+                </enumerationValues>
+            </property>
+
+            <property key="toastAutoClose" type="integer" required="true" defaultValue="2400">
+                <caption>Toast Auto Close</caption>
+                <description>Auto close duration in milliseconds. Use 0 to keep the toast open.</description>
+            </property>
+        </propertyGroup>
+
+        <propertyGroup caption="Appearance">
+            <property key="compact" type="boolean" required="true" defaultValue="false">
+                <caption>Compact Layout</caption>
+                <description>Use tighter spacing for small modal layouts.</description>
+            </property>
+        </propertyGroup>
+    </properties>
+</widget>

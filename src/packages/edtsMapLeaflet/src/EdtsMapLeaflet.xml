@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="edts-mendix.edtsmapleaflet.EdtsMapLeaflet" pluginWidget="true" needsEntityContext="true" offlineCapable="true" supportedPlatform="Web"
+    xmlns="http://www.mendix.com/widget/1.0/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/@mendix/pluggable-widgets-api/widget.xsd">
+
+    <name>EdtsMapLeaflet</name>
+    <description>OpenStreetMap map with custom React Leaflet markers.</description>
+    <icon/>
+
+    <properties>
+        <propertyGroup caption="Data Source">
+            <property key="dataSource" type="datasource" isList="true" required="true">
+                <caption>Data Source</caption>
+                <description>Select the datasource that provides marker items.</description>
+            </property>
+
+            <property key="latitudeAttr" type="attribute" dataSource="dataSource" required="true">
+                <caption>Latitude Attribute</caption>
+                <description>Select the decimal, long, integer, or string attribute containing latitude.</description>
+                <attributeTypes>
+                    <attributeType name="Decimal"/>
+                    <attributeType name="Integer"/>
+                    <attributeType name="Long"/>
+                    <attributeType name="String"/>
+                </attributeTypes>
+            </property>
+
+            <property key="longitudeAttr" type="attribute" dataSource="dataSource" required="true">
+                <caption>Longitude Attribute</caption>
+                <description>Select the decimal, long, integer, or string attribute containing longitude.</description>
+                <attributeTypes>
+                    <attributeType name="Decimal"/>
+                    <attributeType name="Integer"/>
+                    <attributeType name="Long"/>
+                    <attributeType name="String"/>
+                </attributeTypes>
+            </property>
+
+            <property key="titleAttr" type="attribute" dataSource="dataSource" required="false">
+                <caption>Title Attribute</caption>
+                <description>Optional title shown in the marker popup.</description>
+                <attributeTypes>
+                    <attributeType name="String"/>
+                    <attributeType name="Enum"/>
+                </attributeTypes>
+            </property>
+
+            <property key="subtitleAttr" type="attribute" dataSource="dataSource" required="false">
+                <caption>Subtitle Attribute</caption>
+                <description>Optional subtitle shown in the marker popup.</description>
+                <attributeTypes>
+                    <attributeType name="String"/>
+                    <attributeType name="Enum"/>
+                </attributeTypes>
+            </property>
+
+            <property key="colorAttr" type="attribute" dataSource="dataSource" required="false">
+                <caption>Marker Color Attribute</caption>
+                <description>Optional marker color in hex or CSS color format.</description>
+                <attributeTypes>
+                    <attributeType name="String"/>
+                </attributeTypes>
+            </property>
+        </propertyGroup>
+
+        <propertyGroup caption="Map">
+            <property key="mapHeight" type="integer" required="true" defaultValue="440">
+                <caption>Map Height</caption>
+                <description>Set the map height in pixels.</description>
+            </property>
+
+            <property key="initialZoom" type="integer" required="true" defaultValue="13">
+                <caption>Initial Zoom</caption>
+                <description>Zoom level used when there is only one marker.</description>
+            </property>
+
+            <property key="allowScrollWheelZoom" type="boolean" required="true" defaultValue="true">
+                <caption>Allow Scroll Wheel Zoom</caption>
+                <description>Enable or disable zooming with the mouse wheel.</description>
+            </property>
+
+            <property key="showPopupOnLoad" type="boolean" required="true" defaultValue="false">
+                <caption>Show Popup On Load</caption>
+                <description>Automatically open the first marker popup when the map loads.</description>
+            </property>
+        </propertyGroup>
+    </properties>
+</widget>

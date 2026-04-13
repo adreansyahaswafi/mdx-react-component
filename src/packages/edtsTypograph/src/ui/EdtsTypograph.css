@@ -1,0 +1,239 @@
+.edts-typograph {
+    --edts-typograph-accent: #14236f;
+    --edts-typograph-ink: #101828;
+    --edts-typograph-muted: #4b5563;
+    --edts-typograph-line: rgba(20, 35, 111, 0.07);
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    width: 100%;
+    min-height: 292px;
+    padding: 34px 34px 22px;
+    color: var(--edts-typograph-ink);
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.edts-typograph--lined {
+    background:
+        radial-gradient(circle at 86% 18%, rgba(20, 35, 111, 0.08), transparent 24%),
+        linear-gradient(90deg, rgba(20, 35, 111, 0.035) 0 1px, transparent 1px 100%),
+        linear-gradient(to bottom, transparent 0, transparent 37px, var(--edts-typograph-line) 38px),
+        linear-gradient(180deg, #ffffff 0%, #fcfdff 100%);
+    background-size: 100% 100%, 34px 100%, 100% 38px, 100% 100%;
+}
+
+.edts-typograph--lined::before {
+    display: none;
+}
+
+.edts-typograph--lined::after,
+.edts-typograph--card::after {
+    content: "";
+    position: absolute;
+    top: -72px;
+    right: -82px;
+    width: 220px;
+    height: 220px;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(45, 212, 191, 0.16) 0%, rgba(45, 212, 191, 0) 68%);
+    z-index: 0;
+}
+
+.edts-typograph > * {
+    position: relative;
+    z-index: 1;
+}
+
+.edts-typograph--card {
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 250, 252, 0.96) 58%, rgba(236, 253, 245, 0.76) 100%);
+}
+
+.edts-typograph--minimal {
+    min-height: auto;
+    padding: 6px 0;
+    background: transparent;
+}
+
+.edts-typograph__content {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.edts-typograph__header h2 {
+    position: relative;
+    display: inline-block;
+    margin: 0;
+    color: var(--edts-typograph-accent);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(2.35rem, 6vw, 4.15rem);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+}
+
+.edts-typograph__header h2::after {
+    content: "";
+    position: absolute;
+    left: -2px;
+    right: -12px;
+    bottom: 2px;
+    height: 12px;
+    border-radius: 999px;
+    background: rgba(45, 212, 191, 0.24);
+    z-index: -1;
+}
+
+.edts-typograph__header p {
+    max-width: 560px;
+    margin: 14px 0 0;
+    color: color-mix(in srgb, var(--edts-typograph-accent) 82%, #475569);
+    font-size: 16px;
+    font-weight: 650;
+    line-height: 1.5;
+}
+
+.edts-typograph__rows {
+    display: grid;
+    gap: 16px;
+    margin-top: 38px;
+}
+
+.edts-typograph__row {
+    display: grid;
+    grid-template-columns: 38px minmax(0, 1fr);
+    gap: 14px;
+    align-items: center;
+    max-width: 720px;
+    padding: 10px 14px 10px 10px;
+    border: 1px solid rgba(20, 35, 111, 0.08);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.62);
+    color: #3f444d;
+    font-size: 15px;
+    font-weight: 580;
+    line-height: 1.45;
+    box-shadow: 0 12px 26px rgba(15, 23, 42, 0.045);
+}
+
+.edts-typograph__row:first-child {
+    color: var(--edts-typograph-accent);
+    font-weight: 750;
+}
+
+.edts-typograph__row-content {
+    min-width: 0;
+}
+
+.edts-typograph__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 12px;
+    background: rgba(20, 35, 111, 0.06);
+    color: #555b64;
+}
+
+.edts-typograph__icon svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.edts-typograph__icon > * {
+    max-width: 100%;
+}
+
+.edts-typograph__icon-fallback {
+    font-size: 12px;
+    font-weight: 850;
+}
+
+.edts-typograph__slot-placeholder {
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
+    padding: 4px 8px;
+    border: 1px dashed rgba(20, 35, 111, 0.24);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.6);
+    color: #64748b;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+}
+
+.edts-typograph__slot-placeholder--icon {
+    justify-content: center;
+    min-width: 24px;
+    padding: 3px 6px;
+    font-size: 10px;
+}
+
+.edts-typograph__icon--category {
+    color: var(--edts-typograph-accent);
+}
+
+.edts-typograph__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: auto;
+    padding-top: 28px;
+}
+
+.edts-typograph__actions button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border: 1px solid rgba(20, 35, 111, 0.1);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.72);
+    color: #1f2937;
+    cursor: pointer;
+    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.06);
+    transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.edts-typograph__actions button:hover {
+    background: rgba(20, 35, 111, 0.1);
+    color: var(--edts-typograph-accent);
+    transform: translateY(-1px);
+    box-shadow: 0 16px 30px rgba(15, 23, 42, 0.1);
+}
+
+.edts-typograph__actions svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+@media (max-width: 640px) {
+    .edts-typograph {
+        padding: 24px 20px 18px;
+    }
+
+    .edts-typograph__header h2 {
+        font-size: 2.35rem;
+    }
+
+    .edts-typograph__rows {
+        gap: 14px;
+        margin-top: 28px;
+    }
+}

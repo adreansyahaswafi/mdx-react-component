@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="edts-mendix.edtstypograph.EdtsTypograph" pluginWidget="true" needsEntityContext="true" offlineCapable="true" supportedPlatform="Web"
+    xmlns="http://www.mendix.com/widget/1.0/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/@mendix/pluggable-widgets-api/widget.xsd">
+
+    <name>EdtsTypograph</name>
+    <description>Typography detail widget</description>
+    <icon/>
+
+    <properties>
+        <propertyGroup caption="Content">
+            <property key="title" type="string" required="false">
+                <caption>Title</caption>
+                <description>Fallback title shown when Title Attribute is empty.</description>
+            </property>
+
+            <property key="titleAttr" type="attribute" required="false">
+                <caption>Title Attribute</caption>
+                <description>Optional context attribute for the main title.</description>
+                <attributeTypes>
+                    <attributeType name="String"/>
+                </attributeTypes>
+            </property>
+
+            <property key="titleContent" type="widgets" required="false">
+                <caption>Title Content</caption>
+                <description>Optional custom widget content for the title area. If provided, this overrides Title and Title Attribute.</description>
+            </property>
+
+            <property key="scheduleText" type="string" required="false">
+                <caption>Schedule Text</caption>
+                <description>Fallback schedule text shown when date attributes are not configured.</description>
+            </property>
+
+            <property key="startAttr" type="attribute" required="false">
+                <caption>Start Date Attribute</caption>
+                <description>Optional context date attribute for the start date/time.</description>
+                <attributeTypes>
+                    <attributeType name="DateTime"/>
+                </attributeTypes>
+            </property>
+
+            <property key="endAttr" type="attribute" required="false">
+                <caption>End Date Attribute</caption>
+                <description>Optional context date attribute for the end date/time.</description>
+                <attributeTypes>
+                    <attributeType name="DateTime"/>
+                </attributeTypes>
+            </property>
+
+            <property key="scheduleContent" type="widgets" required="false">
+                <caption>Schedule Content</caption>
+                <description>Optional custom widget content for the schedule area. If provided, this overrides Schedule Text and date attributes.</description>
+            </property>
+
+            <property key="categoryText" type="string" required="false">
+                <caption>Category Text</caption>
+                <description>Fallback category, room, or label text.</description>
+            </property>
+
+            <property key="categoryAttr" type="attribute" required="false">
+                <caption>Category Attribute</caption>
+                <description>Optional context attribute for category, room, or label text.</description>
+                <attributeTypes>
+                    <attributeType name="String"/>
+                </attributeTypes>
+            </property>
+
+            <property key="categoryContent" type="widgets" required="false">
+                <caption>Primary Bar Content</caption>
+                <description>Optional custom widget content for the first detail bar. If provided, this overrides Category Text and Category Attribute.</description>
+            </property>
+
+            <property key="ownerText" type="string" required="false">
+                <caption>Owner Text</caption>
+                <description>Fallback owner or requester text.</description>
+            </property>
+
+            <property key="ownerAttr" type="attribute" required="false">
+                <caption>Owner Attribute</caption>
+                <description>Optional context attribute for owner or requester text.</description>
+                <attributeTypes>
+                    <attributeType name="String"/>
+                </attributeTypes>
+            </property>
+
+            <property key="ownerContent" type="widgets" required="false">
+                <caption>Secondary Bar Content</caption>
+                <description>Optional custom widget content for the second detail bar. If provided, this overrides Owner Text and Owner Attribute.</description>
+            </property>
+        </propertyGroup>
+
+        <propertyGroup caption="Detail Items">
+            <property key="detailItems" type="object" isList="true" required="false">
+                <caption>Detail Items</caption>
+                <description>Add as many detail rows as needed. Each row can use Mendix widgets for the icon and content.</description>
+                <properties>
+                    <property key="iconContent" type="widgets" required="false">
+                        <caption>Icon Content</caption>
+                        <category>Icon</category>
+                        <description>Drag an icon, image, text, or any Mendix widget here for the row icon.</description>
+                    </property>
+
+                    <property key="text" type="string" required="false">
+                        <caption>Fallback Text</caption>
+                        <category>Content</category>
+                        <description>Fallback row text when Content is empty.</description>
+                    </property>
+
+                    <property key="content" type="widgets" required="false">
+                        <caption>Content</caption>
+                        <category>Content</category>
+                        <description>Drag Text or any Mendix widget here for the row body.</description>
+                    </property>
+                </properties>
+            </property>
+        </propertyGroup>
+
+        <propertyGroup caption="Appearance">
+            <property key="variant" type="enumeration" required="true" defaultValue="lined">
+                <caption>Variant</caption>
+                <description>Select the visual treatment.</description>
+                <enumerationValues>
+                    <enumerationValue key="lined">Lined Paper</enumerationValue>
+                    <enumerationValue key="card">Clean Card</enumerationValue>
+                    <enumerationValue key="minimal">Minimal</enumerationValue>
+                </enumerationValues>
+            </property>
+
+            <property key="accentColor" type="string" required="false">
+                <caption>Accent Color</caption>
+                <description>Optional CSS color for title and accents.</description>
+            </property>
+
+            <property key="showActions" type="boolean" required="true" defaultValue="true">
+                <caption>Show Actions</caption>
+                <description>Show edit and delete action buttons.</description>
+            </property>
+        </propertyGroup>
+
+        <propertyGroup caption="Actions">
+            <property key="onEdit" type="action" required="false">
+                <caption>On Edit</caption>
+                <description>Optional action when the edit button is clicked.</description>
+            </property>
+
+            <property key="onDelete" type="action" required="false">
+                <caption>On Delete</caption>
+                <description>Optional action when the delete button is clicked.</description>
+            </property>
+        </propertyGroup>
+    </properties>
+</widget>

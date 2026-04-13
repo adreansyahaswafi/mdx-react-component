@@ -1,0 +1,45 @@
+{
+  "name": "mendix-widgets-monorepo",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Monorepo for Mendix pluggable widgets managed with Lerna",
+  "workspaces": [
+    "src/packages/*"
+  ],
+  "scripts": {
+    "bootstrap": "npm install",
+    "build": "node scripts/run-package-command.mjs build",
+    "lint": "node scripts/run-package-command.mjs lint",
+    "dev": "node scripts/run-package-command.mjs dev",
+    "playground": "vite --config playground/vite.config.js",
+    "playground:build": "vite build --config playground/vite.config.js",
+    "playground:preview": "vite preview --config playground/vite.config.js",
+    "release": "node scripts/run-package-command.mjs release",
+    "install:pkg": "node scripts/run-package-command.mjs install",
+    "generate:package": "node scripts/generate-package.mjs"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "4.3.1",
+    "lerna": "8.1.8",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "vite": "5.4.10"
+  },
+  "dependencies": {
+    "react-router-dom": "6.28.0"
+  },
+  "resolutions": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-native": "0.72.7",
+    "@types/react": "18.2.0",
+    "@types/react-dom": "18.2.0"
+  },
+  "overrides": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-native": "0.72.7",
+    "@types/react": "18.2.0",
+    "@types/react-dom": "18.2.0"
+  }
+}

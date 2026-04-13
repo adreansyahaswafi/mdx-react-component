@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="edts-mendix.edtscalendar.EdtsCalendar" pluginWidget="true" needsEntityContext="true" offlineCapable="true" supportedPlatform="Web"
+    xmlns="http://www.mendix.com/widget/1.0/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/@mendix/pluggable-widgets-api/widget.xsd">
+
+    <name>Edts Calendar</name>
+    <description>FullCalendar for Mendix 11</description>
+    <icon/>
+
+    <properties>
+        <propertyGroup caption="Data Source">
+
+            <property key="eventSource" type="datasource" isList="true" required="true">
+                <caption>Event Source</caption>
+                <description>Select the datasource that provides the calendar events.</description>
+            </property>
+
+            <property key="titleAttr" type="attribute" dataSource="eventSource" required="true">
+                <caption>Title Attribute</caption>
+                <description>Select the string attribute used as the event title.</description>
+                <attributeTypes>
+                    <attributeType name="String"/>
+                </attributeTypes>
+            </property>
+
+            <property key="startAttr" type="attribute" dataSource="eventSource" required="true">
+                <caption>Start Date Attribute</caption>
+                <description>Select the date attribute used as the event start.</description>
+                <attributeTypes>
+                    <attributeType name="DateTime"/>
+                </attributeTypes>
+            </property>
+
+            <property key="endAttr" type="attribute" dataSource="eventSource" required="false">
+                <caption>End Date Attribute</caption>
+                <description>Optionally select the date attribute used as the event end.</description>
+                <attributeTypes>
+                    <attributeType name="DateTime"/>
+                </attributeTypes>
+            </property>
+
+            <property key="color" type="attribute" dataSource="eventSource" required="false">
+                <caption>Color Attribute</caption>
+                <description>Optionally select the string attribute that stores an event color.</description>
+                <attributeTypes>
+                    <attributeType name="String"/>
+                </attributeTypes>
+            </property>
+
+        </propertyGroup>
+
+        <propertyGroup caption="Events">
+            <property key="initialView" type="enumeration" required="true" defaultValue="month">
+                <caption>Initial View</caption>
+                <description>Select the default calendar view.</description>
+                <enumerationValues>
+                    <enumerationValue key="day">Day</enumerationValue>
+                    <enumerationValue key="week">Week</enumerationValue>
+                    <enumerationValue key="list">List</enumerationValue>
+                    <enumerationValue key="month">Month</enumerationValue>
+                    <enumerationValue key="year">Year</enumerationValue>
+                </enumerationValues>
+            </property>
+
+            <property key="showViewSwitcher" type="boolean" required="true" defaultValue="true">
+                <caption>Show View Switcher</caption>
+                <description>Show toolbar buttons so users can switch between day, week, list, month, and year views.</description>
+            </property>
+
+            <property key="selectedDateAttr" type="attribute" required="false">
+                <caption>Selected Date Attribute</caption>
+                <description>Optionally store the clicked or selected date in a context object attribute before the action runs.</description>
+                <attributeTypes>
+                    <attributeType name="DateTime"/>
+                </attributeTypes>
+            </property>
+
+            <property key="selectedEventIdAttr" type="attribute" required="false">
+                <caption>Selected Event Id Attribute</caption>
+                <description>Optionally store the clicked event id on the current object before the action runs.</description>
+                <attributeTypes>
+                    <attributeType name="String"/>
+                </attributeTypes>
+            </property>
+
+            <property key="selectedEventTitleAttr" type="attribute" required="false">
+                <caption>Selected Event Title Attribute</caption>
+                <description>Optionally store the clicked event title on the current object before the action runs.</description>
+                <attributeTypes>
+                    <attributeType name="String"/>
+                </attributeTypes>
+            </property>
+
+            <property key="selectedEventStartAttr" type="attribute" required="false">
+                <caption>Selected Event Start Attribute</caption>
+                <description>Optionally store the clicked or changed event start on the current object before the action runs. For drag or resize, this is the reliable source for the updated start date.</description>
+                <attributeTypes>
+                    <attributeType name="DateTime"/>
+                </attributeTypes>
+            </property>
+
+            <property key="selectedEventEndAttr" type="attribute" required="false">
+                <caption>Selected Event End Attribute</caption>
+                <description>Optionally store the clicked or changed event end on the current object before the action runs. For drag or resize, this is the reliable source for the updated end date.</description>
+                <attributeTypes>
+                    <attributeType name="DateTime"/>
+                </attributeTypes>
+            </property>
+
+            <property key="onDateSelect" type="action" required="false">
+                <caption>On Date Selected</caption>
+                <description>Optionally run an action when the user clicks or selects a date. The action receives the selected date plus a start and end date range.</description>
+                <actionVariables>
+                    <actionVariable key="selectedDate" type="DateTime" caption="Selected Date"/>
+                    <actionVariable key="selectedStart" type="DateTime" caption="Selected Start"/>
+                    <actionVariable key="selectedEnd" type="DateTime" caption="Selected End"/>
+                </actionVariables>
+            </property>
+
+            <property key="onEventClick" type="action" dataSource="eventSource" required="false">
+                <caption>On Event Click</caption>
+                <description>Optionally run an action for the clicked event object. Use this for showing a page or dialog for the selected datasource item.</description>
+            </property>
+
+            <property key="onEventChange" type="action" dataSource="eventSource" required="false">
+                <caption>On Event Change</caption>
+                <description>Optionally run an action for the changed event object after drag or resize. The action also receives the updated event details as parameters.</description>
+                <actionVariables>
+                    <actionVariable key="eventId" type="String" caption="Event Id"/>
+                    <actionVariable key="eventTitle" type="String" caption="Event Title"/>
+                    <actionVariable key="eventStart" type="DateTime" caption="Event Start"/>
+                    <actionVariable key="eventEnd" type="DateTime" caption="Event End"/>
+                </actionVariables>
+            </property>
+        </propertyGroup>
+
+    </properties>
+</widget>

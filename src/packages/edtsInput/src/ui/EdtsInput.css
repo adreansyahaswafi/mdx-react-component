@@ -1,0 +1,127 @@
+.edts-input {
+    width: 100%;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+    margin-bottom:20px;
+}
+
+.edts-input__label {
+    display: block;
+    font-weight: 700;
+    color: #334155;
+    line-height: 1.4;
+}
+
+.edts-input__control {
+    width: 100%;
+    position: relative;
+}
+
+.edts-input__field {
+    width: 100%;
+    min-height: 40px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 10px 14px;
+    font-size: 14px;
+    line-height: 1.5;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.edts-input__control--password .edts-input__field {
+    padding-right: 48px;
+}
+
+.edts-input__field::placeholder {
+    color: #94a3b8;
+}
+
+.edts-input__field:focus {
+    border-color: #86b7fe;
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.2);
+}
+
+.edts-input__field.is-invalid {
+    border-color: #dc3545;
+    background-image: none;
+    box-shadow: 0 0 0 0.18rem rgba(220, 53, 69, 0.16);
+}
+
+.edts-input__control--password .edts-input__field.is-invalid {
+    padding-right: 48px;
+}
+
+.edts-input--readonly .edts-input__field {
+    background-color: #f8f9fa;
+    opacity: 1;
+}
+
+.edts-input__toggle {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: 0;
+    border-radius: 10px;
+    background: transparent;
+    color: #64748b;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.edts-input__toggle:hover,
+.edts-input__toggle:focus {
+    background: #f1f5f9;
+    color: #0f172a;
+    outline: none;
+}
+
+.edts-input__toggle-icon {
+    width: 18px;
+    height: 18px;
+}
+
+.edts-input__messages,
+.edts-input__helper {
+    width: 100%;
+    clear: both;
+}
+
+.edts-input__message {
+    display: block;
+    font-weight: 600;
+    line-height: 1.5;
+    font-size: 12px;
+    color: #dc3545;
+    margin-top: 0;
+}
+
+.edts-input__message + .edts-input__message {
+    margin-top: 4px;
+}
+
+.edts-input__helper {
+    line-height: 1.5;
+    font-size: 12px;
+    color: #6c757d;
+}
+
+.edts-input__messages {
+    display: block;
+    width: 100%;
+}
+
+.edts-input__message.invalid-feedback {
+    display: block;
+    margin-top: 0;
+    width: 100%;
+    position: static;
+}

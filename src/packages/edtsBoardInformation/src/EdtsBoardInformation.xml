@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="edts-mendix.edtsboardinformation.EdtsBoardInformation" pluginWidget="true" needsEntityContext="true" offlineCapable="true" supportedPlatform="Web"
+    xmlns="http://www.mendix.com/widget/1.0/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/@mendix/pluggable-widgets-api/widget.xsd">
+
+    <name>EdtsBoardInformation</name>
+    <description>Modern KPI board information card.</description>
+    <icon/>
+
+    <properties>
+        <propertyGroup caption="Content">
+            <property key="dataSource" type="datasource" isList="true" required="true">
+                <caption>Data Source</caption>
+                <description>Select the datasource that provides the KPI data. The first item is used.</description>
+            </property>
+
+            <property key="titleAttr" type="attribute" dataSource="dataSource" required="true">
+                <caption>Title Attribute</caption>
+                <description>Small heading shown above the value.</description>
+                <attributeTypes>
+                    <attributeType name="String"/>
+                    <attributeType name="Enum"/>
+                </attributeTypes>
+            </property>
+
+            <property key="valueAttr" type="attribute" dataSource="dataSource" required="true">
+                <caption>Value Attribute</caption>
+                <description>Main KPI value shown prominently.</description>
+                <attributeTypes>
+                    <attributeType name="String"/>
+                    <attributeType name="Integer"/>
+                    <attributeType name="Long"/>
+                    <attributeType name="Decimal"/>
+                </attributeTypes>
+            </property>
+
+            <property key="subtitleAttr" type="attribute" dataSource="dataSource" required="false">
+                <caption>Subtitle Attribute</caption>
+                <description>Supporting text shown below the value.</description>
+                <attributeTypes>
+                    <attributeType name="String"/>
+                    <attributeType name="Enum"/>
+                </attributeTypes>
+            </property>
+
+            <property key="trendValueAttr" type="attribute" dataSource="dataSource" required="false">
+                <caption>Trend Value Attribute</caption>
+                <description>Text shown inside the trend badge.</description>
+                <attributeTypes>
+                    <attributeType name="String"/>
+                    <attributeType name="Integer"/>
+                    <attributeType name="Long"/>
+                    <attributeType name="Decimal"/>
+                </attributeTypes>
+            </property>
+
+            <property key="trendDirectionAttr" type="attribute" dataSource="dataSource" required="false">
+                <caption>Trend Direction Attribute</caption>
+                <description>Select a string or enum attribute with values like up, down, or neutral.</description>
+                <attributeTypes>
+                    <attributeType name="String"/>
+                    <attributeType name="Enum"/>
+                </attributeTypes>
+            </property>
+
+            <property key="fallbackTrendDirection" type="enumeration" required="true" defaultValue="up">
+                <caption>Fallback Trend Direction</caption>
+                <description>Choose the trend direction when the trend direction attribute is empty.</description>
+                <enumerationValues>
+                    <enumerationValue key="up">Up</enumerationValue>
+                    <enumerationValue key="down">Down</enumerationValue>
+                    <enumerationValue key="neutral">Neutral</enumerationValue>
+                </enumerationValues>
+            </property>
+        </propertyGroup>
+
+        <propertyGroup caption="Appearance">
+            <property key="theme" type="enumeration" required="true" defaultValue="dark">
+                <caption>Theme</caption>
+                <description>Select the visual style of the card.</description>
+                <enumerationValues>
+                    <enumerationValue key="dark">Dark</enumerationValue>
+                    <enumerationValue key="light">Light</enumerationValue>
+                </enumerationValues>
+            </property>
+        </propertyGroup>
+    </properties>
+</widget>

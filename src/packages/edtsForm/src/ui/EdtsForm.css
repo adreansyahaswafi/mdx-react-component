@@ -1,0 +1,88 @@
+.edts-form {
+    width: 100%;
+    /* border: 1px solid #dbe7f5; */
+    background: transparent;
+}
+
+.edts-form--compact {
+    padding: 18px;
+}
+
+.edts-form__header {
+    margin-bottom: 18px;
+}
+
+.edts-form__title {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.edts-form__description {
+    margin-top: 6px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #64748b;
+}
+
+.edts-form__body {
+    display: grid;
+    /* gap: 14px; */
+}
+
+.edts-form__footer {
+    display: flex;
+    gap: 10px;
+    /* margin-top: 18px; */
+    padding-top: 16px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.edts-form__footer--right {
+    justify-content: flex-end;
+}
+
+.edts-form__footer--left {
+    justify-content: flex-start;
+}
+
+.edts-form__footer--full-width {
+    width: 100%;
+}
+
+.edts-form__footer--full-width .edts-form__button {
+    flex: 1 1 0;
+    width: 100%;
+}
+
+.edts-form__button {
+    min-height: 40px;
+    padding: 10px 16px;
+    border: 1px solid transparent;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.edts-form__button--primary {
+    border-color: #0d6efd;
+    background: #0d6efd;
+    color: #ffffff;
+}
+
+.edts-form__button--primary:hover {
+    background: #0b5ed7;
+    border-color: #0a58ca;
+}
+
+.edts-form__button--secondary {
+    border-color: #ced4da;
+    background: #ffffff;
+    color: #334155;
+}
+
+.edts-form__button--secondary:hover {
+    background: #f8fafc;
+}

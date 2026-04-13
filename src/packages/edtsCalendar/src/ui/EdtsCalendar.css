@@ -1,0 +1,513 @@
+.edts-calendar {
+    width: 100%;
+}
+
+.edts-calendar .fc {
+    --fc-border-color: #e2e8f0;
+    --fc-page-bg-color: transparent;
+    --fc-neutral-bg-color: #f8fafc;
+    --fc-list-event-hover-bg-color: #eff6ff;
+    font-family: "Inter", "Segoe UI", sans-serif;
+    color: #0f172a;
+}
+
+.edts-calendar .fc-toolbar {
+    margin-bottom: 18px !important;
+    padding: 14px 10px 8px;
+    gap: 28px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.edts-calendar .fc-toolbar-title {
+    font-size: 2rem !important;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #0f172a;
+}
+
+.edts-calendar .fc-toolbar-chunk {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.fc .fc-button-group {
+    display: inline-flex;
+    position: relative;
+    vertical-align: middle;
+    gap: 1rem !important;
+}
+.edts-calendar .fc-toolbar-chunk:last-child {
+    gap: 14px;
+}
+
+.edts-calendar .fc-button {
+    border: 1px solid #dbe7f5 !important;
+    background: #ffffff !important;
+    color: #2563eb !important;
+    border-radius: 14px !important;
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.08) !important;
+    padding: 0.72rem 1.15rem !important;
+    font-size: 1rem !important;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+    transition: all 0.2s ease !important;
+}
+
+.edts-calendar .fc-prev-button,
+.edts-calendar .fc-next-button {
+    min-width: 58px;
+    min-height: 52px;
+    font-size: 1.15rem !important;
+}
+
+.edts-calendar .fc-today-button,
+.edts-calendar .fc-timeGridDay-button,
+.edts-calendar .fc-listMonth-button,
+.edts-calendar .fc-dayGridMonth-button,
+.edts-calendar .fc-multiMonthYear-button {
+    min-height: 52px;
+}
+
+.edts-calendar .fc-button:hover,
+.edts-calendar .fc-button:focus {
+    background: #eff6ff !important;
+    border-color: #bfdbfe !important;
+    color: #1d4ed8 !important;
+}
+
+.edts-calendar .fc-button-primary:not(:disabled).fc-button-active,
+.edts-calendar .fc-button-primary:not(:disabled):active {
+    background: linear-gradient(135deg, #2563eb 0%, #0ea5e9 100%) !important;
+    border-color: transparent !important;
+    color: #ffffff !important;
+}
+
+.edts-calendar .fc-view-harness {
+    border: 1px solid #dbe7f5;
+    border-radius: 24px;
+    background:
+        radial-gradient(circle at top left, rgba(59, 130, 246, 0.08), transparent 30%),
+        linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+    box-shadow: 0 22px 48px rgba(15, 23, 42, 0.08);
+    overflow: hidden;
+}
+
+.edts-calendar .fc-scrollgrid,
+.edts-calendar .fc-theme-standard td,
+.edts-calendar .fc-theme-standard th {
+    border-color: #e2e8f0;
+}
+
+.edts-calendar .fc-col-header-cell {
+    background: #f8fbff;
+    padding: 12px 8px;
+}
+
+.edts-calendar .fc-col-header-cell-cushion {
+    color: #64748b;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.edts-calendar .fc-daygrid-day-frame {
+    min-height: 118px;
+    padding: 10px;
+}
+
+.edts-calendar .fc-daygrid-day {
+    background: rgba(255, 255, 255, 0.7);
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.edts-calendar .fc-daygrid-day:hover {
+    background: #f8fbff;
+    box-shadow: inset 0 0 0 1px #bfdbfe;
+}
+
+.edts-calendar .fc-daygrid-day-number {
+    color: #334155;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 999px;
+    min-width: 32px;
+    padding: 4px 10px;
+    text-align: center;
+}
+
+.edts-calendar .fc-daygrid-day.fc-day-today,
+.edts-calendar .fc-multimonth-daygrid-day.fc-day-today {
+    background: rgba(37, 99, 235, 0.08) !important;
+}
+
+.edts-calendar .fc-daygrid-day.fc-day-today .fc-daygrid-day-number,
+.edts-calendar .fc-multimonth-daygrid-day.fc-day-today .fc-daygrid-day-number {
+    background: linear-gradient(135deg, #2563eb 0%, #0ea5e9 100%);
+    border-color: transparent;
+    color: #ffffff;
+}
+
+.edts-calendar .fc-timegrid-col.fc-day-today {
+    background: rgba(37, 99, 235, 0.03) !important;
+    position: relative;
+}
+
+.edts-calendar .fc-timegrid-col.fc-day-today::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    box-shadow: inset 2px 0 0 rgba(37, 99, 235, 0.18), inset -2px 0 0 rgba(37, 99, 235, 0.18);
+    z-index: 1;
+}
+
+.edts-calendar .fc-timegrid-col.fc-day-today::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: var(--edts-calendar-now-percentage, 0%);
+    bottom: 0;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(37, 99, 235, 0.1) 0%, rgba(37, 99, 235, 0.14) 100%);
+    z-index: 1;
+}
+
+.edts-calendar .fc-timegrid-col.fc-day-today .fc-timegrid-col-frame {
+    background: transparent;
+}
+
+.edts-calendar .fc-day-other {
+    background: #f8fafc;
+}
+
+.edts-calendar .fc-day-other .fc-daygrid-day-number {
+    color: #94a3b8;
+    background: #f8fafc;
+}
+
+.edts-calendar .fc-h-event,
+.edts-calendar .fc-timegrid-event {
+    border: none !important;
+    border-radius: 8px !important;
+    box-shadow: 0 10px 20px rgba(15, 23, 42, 0.12);
+    padding: 0 !important;
+    overflow: hidden;
+}
+
+.edts-calendar .fc-daygrid-event-harness,
+.edts-calendar .fc-timegrid-event-harness {
+    padding-inline: 4px;
+}
+
+.edts-calendar .fc-event-main {
+    padding: 0 !important;
+}
+
+.edts-calendar-event-card {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    width: 100%;
+    padding: 8px 12px;
+    color: #ffffff;
+    line-height: 1.1;
+}
+
+.edts-calendar-event-time {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    opacity: 0.92;
+}
+
+.edts-calendar-event-title {
+    font-size: 12px;
+    font-weight: 800;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.edts-calendar .fc-list .edts-calendar-event-title {
+    color: #0f172a;
+}
+
+.edts-calendar .fc-list .edts-calendar-event-time {
+    color: #475569;
+}
+
+.edts-calendar .fc-timegrid-slot {
+    height: 3.5rem;
+}
+
+.edts-calendar .fc-timegrid-axis,
+.edts-calendar .fc-timegrid-slot-label {
+    background: #fbfdff;
+}
+
+.edts-calendar .fc-timegrid-slot-label-cushion,
+.edts-calendar .fc-timegrid-axis-cushion {
+    color: #64748b;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.edts-calendar .fc-timegrid-col {
+    background: rgba(255, 255, 255, 0.85);
+}
+
+.edts-calendar .fc-timegrid-col-frame {
+    min-height: 720px;
+}
+
+.edts-calendar .fc-timegrid-now-indicator-line {
+    border-top: 2px solid #ef4444 !important;
+    opacity: 1 !important;
+    z-index: 20 !important;
+    position: relative !important;
+}
+
+.edts-calendar .fc-timegrid-now-indicator-arrow {
+    display: none !important;
+}
+
+.edts-calendar .fc-timegrid-now-indicator-container {
+    z-index: 20 !important;
+}
+
+.edts-calendar .fc-timegrid-now-indicator-line::before {
+    content: none !important;
+}
+
+.edts-calendar .fc-timegrid-now-indicator-container .edts-calendar-now-indicator-dot {
+    position: absolute;
+    left: -8px;
+    top: -6px;
+    width: 12px;
+    height: 12px;
+    border-radius: 999px;
+    background: #ef4444;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.14);
+}
+
+.edts-calendar .fc-multimonth {
+    padding: 18px;
+    gap: 18px;
+}
+
+.edts-calendar .fc-multimonth-title {
+    color: #0f172a;
+    font-weight: 700;
+}
+
+.edts-calendar .fc-multimonth-month {
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.88);
+    padding: 12px;
+    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.05);
+}
+
+.edts-calendar .fc-list-empty {
+    background: transparent;
+}
+
+.edts-calendar .fc-list {
+    border: none;
+}
+
+.edts-calendar .fc-list-day-cushion {
+    padding: 14px 18px;
+    background: #f8fbff;
+}
+
+.edts-calendar .fc-list-day-text,
+.edts-calendar .fc-list-day-side-text {
+    color: #334155;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.edts-calendar .fc-list-table th,
+.edts-calendar .fc-list-table td {
+    border-color: #e2e8f0;
+}
+
+.edts-calendar .fc-list-event:hover td {
+    background: #eff6ff;
+}
+
+.edts-calendar .fc-list-event-time {
+    color: #64748b;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.edts-calendar .fc-list-event-title a {
+    color: #0f172a;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.edts-calendar .fc-list-empty-cushion {
+    padding: 28px 18px;
+    color: #64748b;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* ============================
+   FC List Calendar — Custom CSS
+   ============================ */
+
+.fc-list {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  font-family: sans-serif !important;
+}
+
+/* ---- Day label header ---- */
+.day-label {
+  font-size: 11px !important;
+  color: #888 !important;
+  padding: 16px 16px 10px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.day-label-line {
+  flex: 1 !important;
+  height: 0.5px !important;
+  background: #e0e0e0 !important;
+}
+
+.today-badge {
+  background: rgba(255, 103, 103, 0.12) !important;
+  color: #993c1d !important;
+  font-size: 10px !important;
+  padding: 2px 8px !important;
+  border-radius: 999px !important;
+}
+
+/* ---- Event row ---- */
+.fc-list-event {
+  cursor: pointer !important;
+}
+
+.fc-list-event:hover td {
+  background: #fafaf9 !important;
+}
+
+/* ---- Time column ---- */
+.fc-list-event-time {
+  white-space: nowrap !important;
+  padding: 14px 16px !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  color: #888 !important;
+  vertical-align: middle !important;
+  border-bottom: 0.5px solid #ebebeb !important;
+  width: 110px !important;
+  background: #fff !important;
+  transition: background 0.12s !important;
+}
+
+/* ---- Dot column ---- */
+.fc-list-event-graphic {
+  padding: 0 8px !important;
+  vertical-align: middle !important;
+  border-bottom: 0.5px solid #ebebeb !important;
+  background: #fff !important;
+  transition: background 0.12s !important;
+}
+
+.fc-dot-wrapper {
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.fc-list-event-dot {
+  display: block !important;
+  width: 8px !important;
+  height: 8px !important;
+  border-radius: 50% !important;
+}
+
+/* ---- Title column ---- */
+.fc-list-event-title {
+  padding: 14px 16px 14px 4px !important;
+  vertical-align: middle !important;
+  border-bottom: 0.5px solid #ebebeb !important;
+  background: #fff !important;
+  transition: background 0.12s !important;
+  width: 100% !important;
+}
+
+.event-card {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+.event-title-text {
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  color: #1a1a1a !important;
+}
+
+.event-sub {
+  font-size: 12px !important;
+  color: #999 !important;
+  margin-top: 2px !important;
+}
+
+/* ---- "Sekarang" badge ---- */
+.event-badge {
+  font-size: 10px !important;
+  font-weight: 500 !important;
+  padding: 2px 8px !important;
+  border-radius: 999px !important;
+  background: rgba(255, 103, 103, 0.12) !important;
+  color: #993c1d !important;
+  letter-spacing: 0.03em !important;
+  white-space: nowrap !important;
+}
+
+/* ---- Card wrapper (opsional) ---- */
+.fc-list-card {
+  max-width: 520px !important;
+  margin: 1rem auto !important;
+  background: #fff !important;
+  border-radius: 12px !important;
+  border: 0.5px solid #e5e5e5 !important;
+  overflow: hidden !important;
+}
+
+.fc-list-card-header {
+  padding: 14px 16px 10px !important;
+  border-bottom: 0.5px solid #ebebeb !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: #1a1a1a !important;
+}
+
+.fc-list-card-footer {
+  padding: 10px 16px !important;
+  text-align: right !important;
+  font-size: 11px !important;
+  color: #bbb !important;
+}

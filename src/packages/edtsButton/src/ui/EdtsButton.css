@@ -1,0 +1,333 @@
+.edts-button {
+    display: inline-flex !important;
+    max-width: 100% !important;
+}
+
+.edts-button--block {
+    display: flex !important;
+    width: 100% !important;
+}
+
+.edts-button__control {
+    --edts-btn-bg: #0d6efd;
+    --edts-btn-color: #ffffff;
+    --edts-btn-border: #0d6efd;
+    --edts-btn-hover-bg: #0b5ed7;
+    --edts-btn-hover-border: #0a58ca;
+    --edts-btn-shadow: none;
+    --edts-btn-focus-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+    appearance: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    min-width: 0 !important;
+    min-height: auto !important;
+    padding: 6px 12px !important;
+    border: 1px solid var(--edts-btn-border) !important;
+    border-radius: 4px !important;
+    background: var(--edts-btn-bg) !important;
+    color: var(--edts-btn-color) !important;
+    box-shadow: var(--edts-btn-shadow) !important;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    line-height: 1.5 !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+    vertical-align: middle !important;
+    user-select: none !important;
+    transform: none !important;
+    background-image: none !important;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+        box-shadow 0.15s ease-in-out !important;
+}
+
+.edts-button__control:hover:not(:disabled) {
+    background: var(--edts-btn-hover-bg) !important;
+    border-color: var(--edts-btn-hover-border) !important;
+    color: var(--edts-btn-color) !important;
+    text-decoration: none !important;
+    transform: none !important;
+    background-image: none !important;
+}
+
+.edts-button__control:focus:not(:disabled) {
+    background: var(--edts-btn-hover-bg) !important;
+    border-color: var(--edts-btn-hover-border) !important;
+    color: var(--edts-btn-color) !important;
+    outline: none !important;
+    box-shadow: var(--edts-btn-focus-shadow) !important;
+    text-decoration: none !important;
+}
+
+.edts-button__control:active:not(:disabled) {
+    background: var(--edts-btn-hover-bg) !important;
+    border-color: var(--edts-btn-hover-border) !important;
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125) !important;
+    transform: none !important;
+}
+
+.edts-button__control.btn-link:active:not(:disabled) {
+    box-shadow: none !important;
+}
+
+.edts-button__control:disabled {
+    opacity: 0.65 !important;
+    cursor: not-allowed !important;
+    box-shadow: none !important;
+}
+
+.edts-button__icon,
+.edts-button__spinner {
+    display: inline-flex !important;
+    width: 18px !important;
+    height: 18px !important;
+    flex-shrink: 0 !important;
+}
+
+.edts-button__icon svg {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.edts-button__spinner {
+    border: 2px solid currentColor !important;
+    border-right-color: transparent !important;
+    border-radius: 999px !important;
+    animation: edts-button-spin 0.7s linear infinite !important;
+}
+
+.edts-button__label {
+    white-space: nowrap !important;
+    font-size: inherit !important;
+}
+
+.edts-button .w-100 {
+    width: 100% !important;
+}
+
+.edts-button .btn-sm {
+    min-width: 0 !important;
+    min-height: auto !important;
+    padding: 4px 8px !important;
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+    border-radius: 3px !important;
+}
+
+.edts-button .btn-lg {
+    min-width: 0 !important;
+    min-height: auto !important;
+    padding: 8px 16px !important;
+    font-size: 20px !important;
+    line-height: 1.5 !important;
+    border-radius: 4px !important;
+}
+
+.edts-button .btn-primary {
+    --edts-btn-bg: #0d6efd;
+    --edts-btn-color: #ffffff;
+    --edts-btn-border: #0d6efd;
+    --edts-btn-hover-bg: #0b5ed7;
+    --edts-btn-hover-border: #0a58ca;
+    --edts-btn-shadow: none;
+    --edts-btn-focus-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+.edts-button .btn-secondary {
+    --edts-btn-bg: #6c757d;
+    --edts-btn-color: #ffffff;
+    --edts-btn-border: #6c757d;
+    --edts-btn-hover-bg: #5c636a;
+    --edts-btn-hover-border: #565e64;
+    --edts-btn-shadow: none;
+    --edts-btn-focus-shadow: 0 0 0 3px rgba(108, 117, 125, 0.25);
+}
+
+.edts-button .btn-success {
+    --edts-btn-bg: #198754;
+    --edts-btn-color: #ffffff;
+    --edts-btn-border: #198754;
+    --edts-btn-hover-bg: #157347;
+    --edts-btn-hover-border: #146c43;
+    --edts-btn-shadow: none;
+    --edts-btn-focus-shadow: 0 0 0 3px rgba(40, 167, 69, 0.25);
+}
+
+.edts-button .btn-danger {
+    --edts-btn-bg: #dc3545;
+    --edts-btn-color: #ffffff;
+    --edts-btn-border: #dc3545;
+    --edts-btn-hover-bg: #bb2d3b;
+    --edts-btn-hover-border: #b02a37;
+    --edts-btn-shadow: none;
+    --edts-btn-focus-shadow: 0 0 0 3px rgba(220, 53, 69, 0.25);
+}
+
+.edts-button .btn-warning {
+    --edts-btn-bg: #ffc107;
+    --edts-btn-color: #212529;
+    --edts-btn-border: #ffc107;
+    --edts-btn-hover-bg: #ffca2c;
+    --edts-btn-hover-border: #ffc720;
+    --edts-btn-shadow: none;
+    --edts-btn-focus-shadow: 0 0 0 3px rgba(255, 193, 7, 0.25);
+}
+
+.edts-button .btn-info {
+    --edts-btn-bg: #0dcaf0;
+    --edts-btn-color: #0b1f2a;
+    --edts-btn-border: #0dcaf0;
+    --edts-btn-hover-bg: #31d2f2;
+    --edts-btn-hover-border: #25cff2;
+    --edts-btn-shadow: none;
+    --edts-btn-focus-shadow: 0 0 0 3px rgba(23, 162, 184, 0.25);
+}
+
+.edts-button .btn-light {
+    --edts-btn-bg: #f8f9fa;
+    --edts-btn-color: #212529;
+    --edts-btn-border: #f8f9fa;
+    --edts-btn-hover-bg: #d3d4d5;
+    --edts-btn-hover-border: #c6c7c8;
+    --edts-btn-shadow: none;
+    --edts-btn-focus-shadow: 0 0 0 3px rgba(248, 249, 250, 0.25);
+}
+
+.edts-button .btn-dark {
+    --edts-btn-bg: #212529;
+    --edts-btn-color: #ffffff;
+    --edts-btn-border: #212529;
+    --edts-btn-hover-bg: #1c1f23;
+    --edts-btn-hover-border: #1a1e21;
+    --edts-btn-shadow: none;
+    --edts-btn-focus-shadow: 0 0 0 3px rgba(52, 58, 64, 0.25);
+}
+
+.edts-button .btn-link {
+    --edts-btn-bg: transparent;
+    --edts-btn-color: #0d6efd;
+    --edts-btn-border: transparent;
+    --edts-btn-hover-bg: transparent;
+    --edts-btn-hover-border: transparent;
+    --edts-btn-shadow: none;
+    --edts-btn-focus-shadow: none;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.edts-button .btn-link:hover:not(:disabled),
+.edts-button .btn-link:focus:not(:disabled) {
+    background: transparent !important;
+    border-color: transparent !important;
+    text-decoration: underline !important;
+    box-shadow: none !important;
+}
+
+.edts-button .btn-outline-primary,
+.edts-button .btn-outline-secondary,
+.edts-button .btn-outline-success,
+.edts-button .btn-outline-danger,
+.edts-button .btn-outline-warning,
+.edts-button .btn-outline-info,
+.edts-button .btn-outline-light,
+.edts-button .btn-outline-dark {
+    --edts-btn-bg: transparent;
+    --edts-btn-shadow: none;
+}
+
+.edts-button .btn-outline-primary:hover:not(:disabled),
+.edts-button .btn-outline-primary:focus:not(:disabled),
+.edts-button .btn-outline-secondary:hover:not(:disabled),
+.edts-button .btn-outline-secondary:focus:not(:disabled),
+.edts-button .btn-outline-success:hover:not(:disabled),
+.edts-button .btn-outline-success:focus:not(:disabled),
+.edts-button .btn-outline-danger:hover:not(:disabled),
+.edts-button .btn-outline-danger:focus:not(:disabled),
+.edts-button .btn-outline-warning:hover:not(:disabled),
+.edts-button .btn-outline-warning:focus:not(:disabled),
+.edts-button .btn-outline-info:hover:not(:disabled),
+.edts-button .btn-outline-info:focus:not(:disabled),
+.edts-button .btn-outline-light:hover:not(:disabled),
+.edts-button .btn-outline-light:focus:not(:disabled),
+.edts-button .btn-outline-dark:hover:not(:disabled),
+.edts-button .btn-outline-dark:focus:not(:disabled) {
+    color: #ffffff !important;
+}
+
+.edts-button .btn-outline-warning:hover:not(:disabled),
+.edts-button .btn-outline-warning:focus:not(:disabled),
+.edts-button .btn-outline-light:hover:not(:disabled),
+.edts-button .btn-outline-light:focus:not(:disabled) {
+    color: #212529 !important;
+}
+
+.edts-button .btn-outline-primary {
+    --edts-btn-color: #0d6efd;
+    --edts-btn-border: #0d6efd;
+    --edts-btn-hover-bg: #0d6efd;
+    --edts-btn-hover-border: #0d6efd;
+    --edts-btn-focus-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+.edts-button .btn-outline-secondary {
+    --edts-btn-color: #6c757d;
+    --edts-btn-border: #6c757d;
+    --edts-btn-hover-bg: #6c757d;
+    --edts-btn-hover-border: #6c757d;
+    --edts-btn-focus-shadow: 0 0 0 3px rgba(108, 117, 125, 0.25);
+}
+
+.edts-button .btn-outline-success {
+    --edts-btn-color: #198754;
+    --edts-btn-border: #198754;
+    --edts-btn-hover-bg: #198754;
+    --edts-btn-hover-border: #198754;
+    --edts-btn-focus-shadow: 0 0 0 3px rgba(40, 167, 69, 0.25);
+}
+
+.edts-button .btn-outline-danger {
+    --edts-btn-color: #dc3545;
+    --edts-btn-border: #dc3545;
+    --edts-btn-hover-bg: #dc3545;
+    --edts-btn-hover-border: #dc3545;
+    --edts-btn-focus-shadow: 0 0 0 3px rgba(220, 53, 69, 0.25);
+}
+
+.edts-button .btn-outline-warning {
+    --edts-btn-color: #997404;
+    --edts-btn-border: #ffc107;
+    --edts-btn-hover-bg: #ffc107;
+    --edts-btn-hover-border: #ffc107;
+    --edts-btn-focus-shadow: 0 0 0 3px rgba(255, 193, 7, 0.25);
+}
+
+.edts-button .btn-outline-info {
+    --edts-btn-color: #087990;
+    --edts-btn-border: #0dcaf0;
+    --edts-btn-hover-bg: #0dcaf0;
+    --edts-btn-hover-border: #0dcaf0;
+    --edts-btn-focus-shadow: 0 0 0 3px rgba(23, 162, 184, 0.25);
+}
+
+.edts-button .btn-outline-light {
+    --edts-btn-color: #f8f9fa;
+    --edts-btn-border: #dee2e6;
+    --edts-btn-hover-bg: #f8f9fa;
+    --edts-btn-hover-border: #dee2e6;
+    --edts-btn-focus-shadow: 0 0 0 3px rgba(248, 249, 250, 0.25);
+}
+
+.edts-button .btn-outline-dark {
+    --edts-btn-color: #212529;
+    --edts-btn-border: #212529;
+    --edts-btn-hover-bg: #212529;
+    --edts-btn-hover-border: #212529;
+    --edts-btn-focus-shadow: 0 0 0 3px rgba(52, 58, 64, 0.25);
+}
+
+@keyframes edts-button-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
