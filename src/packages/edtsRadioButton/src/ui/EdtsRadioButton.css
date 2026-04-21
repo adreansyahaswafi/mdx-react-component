@@ -1,0 +1,284 @@
+.edts-radio-button {
+    margin-bottom: 20px !important;
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+    color: #0f172a !important;
+}
+
+.edts-radio-button__label {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    line-height: 1.4 !important;
+    color: #334155 !important;
+    margin: 0 !important;
+    letter-spacing: 0 !important;
+}
+
+.edts-radio-button__required {
+    color: #dc3545 !important;
+    font-weight: 800 !important;
+    line-height: 1 !important;
+}
+
+.edts-radio-button__group {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+}
+
+.edts-radio-button__group--horizontal {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+}
+
+.edts-radio-button--simple .edts-radio-button__group {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 28px !important;
+    padding-left: 2px !important;
+    overflow: visible !important;
+}
+
+.edts-radio-button__option {
+    position: relative !important;
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+    padding: 12px 14px !important;
+    border: 1px solid #ced4da !important;
+    border-radius: 14px !important;
+    background: #ffffff !important;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
+    cursor: pointer !important;
+    margin: 0 !important;
+    min-width: 0 !important;
+}
+
+.edts-radio-button__option--simple {
+    width: auto !important;
+    flex: 0 0 auto !important;
+    align-items: center !important;
+    padding: 0 2px 0 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    gap: 10px !important;
+    min-height: auto !important;
+    overflow: visible !important;
+}
+
+.edts-radio-button__option--simple:hover {
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+.edts-radio-button__option:hover {
+    border-color: #86b7fe !important;
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.12) !important;
+}
+
+.edts-radio-button__option--checked {
+    border-color: #0d6efd !important;
+    background: #f8fbff !important;
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.12) !important;
+}
+
+.edts-radio-button__option--disabled,
+.edts-radio-button__option--disabled:hover {
+    cursor: not-allowed !important;
+    opacity: 0.65 !important;
+    border-color: #ced4da !important;
+    box-shadow: none !important;
+    background: #f8f9fa !important;
+}
+
+.edts-radio-button__option--simple.edts-radio-button__option--disabled,
+.edts-radio-button__option--simple.edts-radio-button__option--disabled:hover {
+    border: none !important;
+    background: transparent !important;
+}
+
+.edts-radio-button--simple .edts-radio-button__option--checked {
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+.edts-radio-button__control {
+    position: relative !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 20px !important;
+    height: 20px !important;
+    flex: 0 0 20px !important;
+    margin-top: 0 !important;
+    overflow: visible !important;
+}
+
+.edts-radio-button__input {
+    position: absolute !important;
+    inset: 0 !important;
+    opacity: 0 !important;
+    margin: 0 !important;
+    cursor: inherit !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    width: 20px !important;
+    height: 20px !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    border-radius: 0 !important;
+    pointer-events: none !important;
+}
+
+.edts-radio-button__indicator {
+    padding:3px !important;
+    width: 20px !important;
+    height: 20px !important;
+    min-width: 20px !important;
+    min-height: 20px !important;
+    border: 2px solid #cbd5e1 !important;
+    border-radius: 999px !important;
+    background: #ffffff !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition:
+        border-color 0.2s ease,
+        background-color 0.2s ease;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    box-shadow: none !important;
+    flex: 0 0 20px !important;
+}
+
+.edts-radio-button__indicator-dot {
+    width: 8px !important;
+    height: 8px !important;
+    min-width: 8px !important;
+    min-height: 8px !important;
+    border-radius: 999px !important;
+    background: #0d6efd !important;
+    transform: scale(0) !important;
+    transition: transform 0.2s ease;
+    display: block !important;
+    box-sizing: border-box !important;
+}
+
+.edts-radio-button__option--checked .edts-radio-button__indicator {
+    border-color: #0d6efd !important;
+}
+
+.edts-radio-button__option--checked .edts-radio-button__indicator-dot {
+    transform: scale(1) !important;
+}
+
+.edts-radio-button__option--simple .edts-radio-button__indicator {
+    border-color: #cfd7ea !important;
+    width: 19px !important;
+    height: 19px !important;
+    min-width: 19px !important;
+    min-height: 19px !important;
+    flex: 0 0 19px !important;
+    background: #ffffff !important;
+}
+
+.edts-radio-button__option--simple.edts-radio-button__option--checked .edts-radio-button__indicator {
+    border-color: #0d6efd !important;
+    box-shadow: none !important;
+}
+
+.edts-radio-button__content {
+    min-width: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 3px !important;
+}
+
+.edts-radio-button__option-label {
+    color: #0f172a !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    line-height: 1.45 !important;
+}
+
+.edts-radio-button__option-description {
+    color: #6c757d !important;
+    font-size: 12px !important;
+    line-height: 1.5 !important;
+}
+
+.edts-radio-button__option--simple .edts-radio-button__content {
+    gap: 0 !important;
+}
+
+.edts-radio-button__option--simple .edts-radio-button__option-label {
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    line-height: 1.4 !important;
+    color: #0f172a !important;
+}
+
+.edts-radio-button__option--simple .edts-radio-button__option-description {
+    display: none !important;
+}
+
+.edts-radio-button__helper {
+    font-size: 12px !important;
+    line-height: 1.5 !important;
+    color: #6c757d !important;
+    margin-top: -2px !important;
+}
+
+.edts-radio-button__messages {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 4px !important;
+}
+
+.edts-radio-button__message {
+    color: #dc3545 !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    line-height: 1.5 !important;
+}
+
+.edts-radio-button--readonly .edts-radio-button__option,
+.edts-radio-button--readonly .edts-radio-button__option:hover {
+    cursor: not-allowed !important;
+    box-shadow: none !important;
+}
+
+.edts-radio-button--simple .edts-radio-button__label {
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    color: #334155 !important;
+    margin-bottom: 2px !important;
+}
+
+.edts-radio-button--simple .edts-radio-button__option,
+.edts-radio-button--simple .edts-radio-button__option:hover,
+.edts-radio-button--simple .edts-radio-button__option--checked,
+.edts-radio-button--simple .edts-radio-button__option--checked:hover {
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+.edts-radio-button--invalid .edts-radio-button__option {
+    border-color: rgba(220, 53, 69, 0.28) !important;
+}

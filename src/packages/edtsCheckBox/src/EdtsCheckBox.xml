@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="edts-mendix.edtscheckbox.EdtsCheckBox" pluginWidget="true" needsEntityContext="true" offlineCapable="true" supportedPlatform="Web"
+    xmlns="http://www.mendix.com/widget/1.0/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/@mendix/pluggable-widgets-api/widget.xsd">
+
+    <name>EdtsCheckBox</name>
+    <description>Custom checkbox widget that supports either a single boolean value or multiple selections from an array-like datasource.</description>
+    <icon />
+
+    <properties>
+        <propertyGroup caption="Data">
+            <property key="selectionMode" type="enumeration" defaultValue="boolean" required="true">
+                <caption>Mode</caption>
+                <description>Choose between one boolean checkbox or a checkbox group backed by a reference set.</description>
+                <enumerationValues>
+                    <enumerationValue key="boolean">Boolean</enumerationValue>
+                    <enumerationValue key="array">Array</enumerationValue>
+                </enumerationValues>
+            </property>
+
+            <property key="booleanAttribute" type="attribute" required="false">
+                <caption>Boolean Attribute</caption>
+                <description>Boolean attribute used when the widget is in Boolean mode.</description>
+                <attributeTypes>
+                    <attributeType name="Boolean" />
+                </attributeTypes>
+            </property>
+
+            <property key="associationValue" type="association" required="false" selectableObjects="optionsSource">
+                <caption>Reference Set</caption>
+                <description>Reference set association used to store selected objects in Array mode.</description>
+                <associationTypes>
+                    <associationType name="ReferenceSet" />
+                </associationTypes>
+            </property>
+
+            <property key="optionsSource" type="datasource" isList="true" required="false">
+                <caption>Options Source</caption>
+                <description>Datasource that provides the selectable checkbox items in Array mode.</description>
+            </property>
+
+            <property key="optionLabelAttr" type="attribute" dataSource="optionsSource" required="false">
+                <caption>Option Label</caption>
+                <description>Attribute shown as the label for each checkbox item.</description>
+                <attributeTypes>
+                    <attributeType name="String" />
+                    <attributeType name="Enum" />
+                    <attributeType name="Boolean" />
+                </attributeTypes>
+                <associationTypes>
+                    <associationType name="Reference" />
+                    <associationType name="ReferenceSet" />
+                </associationTypes>
+            </property>
+
+            <property key="optionDescriptionAttr" type="attribute" dataSource="optionsSource" required="false">
+                <caption>Option Description</caption>
+                <description>Optional attribute shown below each option label in Array mode.</description>
+                <attributeTypes>
+                    <attributeType name="String" />
+                    <attributeType name="Enum" />
+                    <attributeType name="Boolean" />
+                </attributeTypes>
+            </property>
+        </propertyGroup>
+
+        <propertyGroup caption="Display">
+            <property key="label" type="string" required="false">
+                <caption>Label</caption>
+                <description>Optional label shown above the checkbox or checkbox group.</description>
+            </property>
+
+            <property key="booleanCaption" type="string" required="false">
+                <caption>Boolean Caption</caption>
+                <description>Caption shown next to the checkbox in Boolean mode.</description>
+            </property>
+
+            <property key="booleanDescription" type="textTemplate" required="false">
+                <caption>Boolean Description</caption>
+                <description>Optional helper text shown under the boolean checkbox caption.</description>
+            </property>
+
+            <property key="helperText" type="textTemplate" required="false">
+                <caption>Helper Text</caption>
+                <description>Optional helper text shown below the widget.</description>
+            </property>
+
+            <property key="layout" type="enumeration" defaultValue="vertical" required="true">
+                <caption>Layout</caption>
+                <description>Choose whether checkbox items are stacked vertically or shown inline.</description>
+                <enumerationValues>
+                    <enumerationValue key="vertical">Vertical</enumerationValue>
+                    <enumerationValue key="horizontal">Horizontal</enumerationValue>
+                </enumerationValues>
+            </property>
+
+            <property key="appearance" type="enumeration" defaultValue="card" required="true">
+                <caption>Appearance</caption>
+                <description>Choose whether items use a boxed card style or a simple inline checkbox style.</description>
+                <enumerationValues>
+                    <enumerationValue key="card">Card</enumerationValue>
+                    <enumerationValue key="simple">Simple</enumerationValue>
+                </enumerationValues>
+            </property>
+
+            <property key="required" type="boolean" defaultValue="false" required="true">
+                <caption>Required</caption>
+                <description>Require the boolean checkbox to be checked, or at least one array option to be selected.</description>
+            </property>
+
+            <property key="requiredMessage" type="string" required="false">
+                <caption>Required Message</caption>
+                <description>Validation message shown when the required rule fails.</description>
+            </property>
+
+            <property key="validateOnChange" type="boolean" defaultValue="true" required="true">
+                <caption>Validate On Change</caption>
+                <description>Show validation feedback while the user interacts with the widget.</description>
+            </property>
+        </propertyGroup>
+
+        <propertyGroup caption="Events">
+            <property key="onChangeAction" type="action" required="false">
+                <caption>On Change</caption>
+                <description>Optional action executed after the selection changes.</description>
+            </property>
+        </propertyGroup>
+    </properties>
+</widget>

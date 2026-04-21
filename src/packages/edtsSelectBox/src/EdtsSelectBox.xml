@@ -24,6 +24,7 @@
                 <description>Select the reference association on the current object.</description>
                 <associationTypes>
                     <associationType name="Reference"/>
+                    <associationType name="ReferenceSet"/>
                 </associationTypes>
             </property>
 
@@ -41,16 +42,26 @@
                 <caption>Selectable Objects</caption>
                 <description>Select the datasource that provides the association options.</description>
             </property>
+
+            <property key="allowMultiple" type="boolean" required="true" defaultValue="false">
+                <caption>Allow Multiple</caption>
+                <description>Allow selecting multiple objects when the association is a reference set.</description>
+            </property>
         </propertyGroup>
 
         <propertyGroup caption="Caption">
             <property key="optionLabelAttr" type="attribute" dataSource="optionsSource" required="false">
                 <caption>Caption Attribute</caption>
-                <description>Select the string or enum attribute shown in the dropdown for association options.</description>
+                <description>Select the attribute or association path shown in the dropdown for association options.</description>
                 <attributeTypes>
                     <attributeType name="String"/>
                     <attributeType name="Enum"/>
+                    <attributeType name="Boolean"/>
                 </attributeTypes>
+                <associationTypes>
+                    <associationType name="Reference"/>
+                    <associationType name="ReferenceSet"/>
+                </associationTypes>
             </property>
         </propertyGroup>
 

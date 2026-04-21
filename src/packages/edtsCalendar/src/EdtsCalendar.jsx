@@ -1,4 +1,4 @@
-import { createElement, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { createElement, useCallback, useEffect, useMemo, useState } from "react";
 // eslint-disable-next-line sort-imports
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
@@ -20,16 +20,17 @@ function getAttributeValue(attribute, item, fallback = null) {
 
 function setDatasourceAttributeValue(attribute, item, value) {
     if (!attribute || !attribute.get || !item) {
-        return;
+        return false;
     }
 
     const attributeValue = attribute.get(item);
 
     if (!attributeValue || typeof attributeValue.setValue !== "function" || attributeValue.readOnly) {
-        return;
+        return false;
     }
 
     attributeValue.setValue(value);
+    return true;
 }
 
 function getDefaultEventEnd(start, end) {
@@ -86,6 +87,84 @@ function renderEventContent(eventInfo) {
     );
 }
 
+function watchWindowClose(windowSelector, onClose, options = {}) {
+    const { appearanceTimeout = 1500, pollInterval = 100 } = options;
+
+    if (typeof document === "undefined" || !document.body) {
+        onClose();
+        return () => {};
+    }
+
+    let isFinished = false;
+    let observer = null;
+    let pollId = null;
+    let timeoutId = null;
+
+    const cleanup = () => {
+        if (observer) {
+            observer.disconnect();
+            observer = null;
+        }
+
+        if (pollId) {
+            clearInterval(pollId);
+            pollId = null;
+        }
+
+        if (timeoutId) {
+            clearTimeout(timeoutId);
+            timeoutId = null;
+        }
+    };
+
+    const finish = () => {
+        if (isFinished) {
+            return;
+        }
+
+        isFinished = true;
+        cleanup();
+        onClose();
+    };
+
+    const observeClose = () => {
+        observer = new MutationObserver(() => {
+            if (!document.querySelector(windowSelector)) {
+                finish();
+            }
+        });
+
+        observer.observe(document.body, { childList: true, subtree: true });
+    };
+
+    if (document.querySelector(windowSelector)) {
+        observeClose();
+        return cleanup;
+    }
+
+    pollId = setInterval(() => {
+        if (document.querySelector(windowSelector)) {
+            if (pollId) {
+                clearInterval(pollId);
+                pollId = null;
+            }
+
+            if (timeoutId) {
+                clearTimeout(timeoutId);
+                timeoutId = null;
+            }
+
+            observeClose();
+        }
+    }, pollInterval);
+
+    timeoutId = setTimeout(() => {
+        finish();
+    }, appearanceTimeout);
+
+    return cleanup;
+}
+
 export function EdtsCalendar({
     eventSource,
     titleAttr,
@@ -105,10 +184,6 @@ export function EdtsCalendar({
 }) {
     const eventItems =
         eventSource && eventSource.status === "available" && Array.isArray(eventSource.items) ? eventSource.items : [];
-    const lastEventChangeRef = useRef({
-        signature: "",
-        at: 0
-    });
     const [nowMarkerPercentage, setNowMarkerPercentage] = useState(() => {
         const currentTime = new Date();
 
@@ -282,57 +357,28 @@ export function EdtsCalendar({
         }, delay);
     }, []);
 
-    const executeDatasourceAction = useCallback((actionValue, item, variables, delay = 0) => {
+    const resolveDatasourceAction = useCallback((actionValue, item) => {
         if (!item || !actionValue) {
-            return;
+            return null;
         }
 
-        setTimeout(() => {
-            const action = typeof actionValue.get === "function" ? actionValue.get(item) : actionValue;
-
-            if (!action || !action.canExecute) {
-                return;
-            }
-
-            if (variables) {
-                action.execute(variables);
-                return;
-            }
-
-            action.execute();
-        }, delay);
+        return typeof actionValue.get === "function" ? actionValue.get(item) : actionValue;
     }, []);
 
-    const isDuplicateEventChange = useCallback(info => {
-        const calendarEvent = getCalendarEvent(info);
+    const executeDatasourceAction = useCallback((actionValue, item, variables) => {
+        const action = resolveDatasourceAction(actionValue, item);
 
-        if (!calendarEvent) {
+        if (!action || !action.canExecute) {
             return false;
         }
 
-        const signature = [
-            String(calendarEvent.id || ""),
-            String(calendarEvent.start ? calendarEvent.start.getTime() : ""),
-            String(calendarEvent.end ? calendarEvent.end.getTime() : ""),
-            String(calendarEvent.title || "")
-        ].join("|");
-
-        const now = Date.now();
-
-        if (
-            lastEventChangeRef.current.signature === signature &&
-            now - lastEventChangeRef.current.at < 400
-        ) {
-            return true;
+        try {
+            const result = variables ? action.execute(variables) : action.execute();
+            return result === undefined ? true : result;
+        } catch (error) {
+            return false;
         }
-
-        lastEventChangeRef.current = {
-            signature,
-            at: now
-        };
-
-        return false;
-    }, [getCalendarEvent]);
+    }, [resolveDatasourceAction]);
 
     const handleDateSelect = useCallback(info => {
         const selectedStart = info && info.date ? info.date : info && info.start ? info.start : null;
@@ -378,35 +424,49 @@ export function EdtsCalendar({
     }, [executeDatasourceAction, findEventItem, getCalendarEvent, getEventActionArgs, onEventClick, syncEventToContext]);
 
     const handleEventChange = useCallback(info => {
-        if (isDuplicateEventChange(info)) {
+        const calendarEvent = getCalendarEvent(info);
+        const eventArgs = getEventActionArgs(info);
+        const item = findEventItem(calendarEvent);
+        const resolvedAction = resolveDatasourceAction(onEventChange, item);
+        const revertEvent = () => {
+            if (info && typeof info.revert === "function") {
+                info.revert();
+            }
+        };
+
+        if (!item || !resolvedAction || !resolvedAction.canExecute) {
+            revertEvent();
             return;
         }
 
-        const calendarEvent = getCalendarEvent(info);
-        const eventArgs = getEventActionArgs(info);
         if (selectedDateAttr && typeof selectedDateAttr.setValue === "function" && !selectedDateAttr.readOnly) {
             selectedDateAttr.setValue(eventArgs.eventStart || null);
         }
 
-        const item = findEventItem(calendarEvent);
+        syncEventToContext(eventArgs);
+        const executionResult = executeDatasourceAction(resolvedAction, item, eventArgs);
 
-        if (item) {
-            setDatasourceAttributeValue(startAttr, item, eventArgs.eventStart);
-            setDatasourceAttributeValue(endAttr, item, eventArgs.eventEnd);
+        if (!executionResult) {
+            revertEvent();
+            return;
         }
 
-        syncEventToContext(eventArgs);
-        executeDatasourceAction(onEventChange, item, eventArgs, 50);
+        const stopWatchingWindow = watchWindowClose(".mx-window-active", revertEvent);
+
+        if (executionResult && typeof executionResult.then === "function") {
+            executionResult.catch(() => {
+                stopWatchingWindow();
+                revertEvent();
+            });
+        }
     }, [
-        endAttr,
         executeDatasourceAction,
         findEventItem,
         getCalendarEvent,
         getEventActionArgs,
-        isDuplicateEventChange,
         onEventChange,
+        resolveDatasourceAction,
         selectedDateAttr,
-        startAttr,
         syncEventToContext
     ]);
 
@@ -456,7 +516,6 @@ export function EdtsCalendar({
                 eventAllow={() => true}
                 dateClick={handleDateSelect}
                 eventClick={handleEventClick}
-                eventChange={handleEventChange}
                 eventDrop={handleEventChange}
                 eventResize={handleEventChange}
                 eventDisplay="block"

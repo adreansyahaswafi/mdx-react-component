@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="edts-mendix.edtsradiobutton.EdtsRadioButton" pluginWidget="true" needsEntityContext="true" offlineCapable="true" supportedPlatform="Web"
+    xmlns="http://www.mendix.com/widget/1.0/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/@mendix/pluggable-widgets-api/widget.xsd">
+
+    <name>EdtsRadioButton</name>
+    <description>Configurable radio button group with Mendix attribute binding.</description>
+    <icon />
+
+    <properties>
+        <propertyGroup caption="Data">
+            <property key="valueAttribute" type="attribute" required="true">
+                <caption>Value Attribute</caption>
+                <description>String, Enum, or Boolean attribute used to store the selected radio value.</description>
+                <attributeTypes>
+                    <attributeType name="String" />
+                    <attributeType name="Enum" />
+                    <attributeType name="Boolean" />
+                </attributeTypes>
+            </property>
+
+            <property key="optionMode" type="enumeration" defaultValue="manual">
+                <caption>Option Mode</caption>
+                <description>Choose whether options are configured manually or generated automatically for a boolean value.</description>
+                <enumerationValues>
+                    <enumerationValue key="manual">Manual Options</enumerationValue>
+                    <enumerationValue key="boolean">Boolean True / False</enumerationValue>
+                </enumerationValues>
+            </property>
+
+            <property key="options" type="object" isList="true" required="false">
+                <caption>Options</caption>
+                <description>Define the radio items shown inside the widget when Option Mode uses manual options.</description>
+                <properties>
+                    <property key="label" type="string" required="true">
+                        <caption>Label</caption>
+                        <category>Content</category>
+                        <description>Visible label for this radio option.</description>
+                    </property>
+                    <property key="value" type="string" required="true">
+                        <caption>Value</caption>
+                        <category>Content</category>
+                        <description>Stored value written to the Mendix attribute when selected.</description>
+                    </property>
+                    <property key="description" type="string" required="false">
+                        <caption>Description</caption>
+                        <category>Content</category>
+                        <description>Optional helper text shown under the option label.</description>
+                    </property>
+                    <property key="disabled" type="boolean" required="true" defaultValue="false">
+                        <caption>Disabled</caption>
+                        <category>Behavior</category>
+                        <description>Disable this option so it cannot be selected.</description>
+                    </property>
+                </properties>
+            </property>
+
+            <property key="trueLabel" type="string" required="false">
+                <caption>True Label</caption>
+                <description>Label used for the true option when Option Mode is Boolean.</description>
+            </property>
+
+            <property key="falseLabel" type="string" required="false">
+                <caption>False Label</caption>
+                <description>Label used for the false option when Option Mode is Boolean.</description>
+            </property>
+
+            <property key="trueDescription" type="string" required="false">
+                <caption>True Description</caption>
+                <description>Optional helper text shown under the true option.</description>
+            </property>
+
+            <property key="falseDescription" type="string" required="false">
+                <caption>False Description</caption>
+                <description>Optional helper text shown under the false option.</description>
+            </property>
+        </propertyGroup>
+
+        <propertyGroup caption="Display">
+            <property key="label" type="string" required="false">
+                <caption>Label</caption>
+                <description>Optional label shown above the radio group.</description>
+            </property>
+
+            <property key="helperText" type="textTemplate" required="false">
+                <caption>Helper Text</caption>
+                <description>Optional helper text shown below the radio group.</description>
+            </property>
+
+            <property key="layout" type="enumeration" defaultValue="vertical">
+                <caption>Layout</caption>
+                <description>Choose whether radio options are stacked vertically or shown inline.</description>
+                <enumerationValues>
+                    <enumerationValue key="vertical">Vertical</enumerationValue>
+                    <enumerationValue key="horizontal">Horizontal</enumerationValue>
+                </enumerationValues>
+            </property>
+
+            <property key="appearance" type="enumeration" defaultValue="card">
+                <caption>Appearance</caption>
+                <description>Choose whether options use a boxed card style or a simple inline radio look.</description>
+                <enumerationValues>
+                    <enumerationValue key="card">Card</enumerationValue>
+                    <enumerationValue key="simple">Simple</enumerationValue>
+                </enumerationValues>
+            </property>
+
+            <property key="required" type="boolean" defaultValue="false">
+                <caption>Required</caption>
+                <description>Require the user to pick one option.</description>
+            </property>
+
+            <property key="requiredMessage" type="string" required="false">
+                <caption>Required Message</caption>
+                <description>Validation message shown when the user leaves the group empty.</description>
+            </property>
+
+            <property key="validateOnChange" type="boolean" defaultValue="true">
+                <caption>Validate On Change</caption>
+                <description>Show validation state while the user interacts with the group.</description>
+            </property>
+        </propertyGroup>
+
+        <propertyGroup caption="Events">
+            <property key="onChangeAction" type="action" required="false">
+                <caption>On Change</caption>
+                <description>Optional action executed after the selection changes.</description>
+            </property>
+        </propertyGroup>
+    </properties>
+</widget>

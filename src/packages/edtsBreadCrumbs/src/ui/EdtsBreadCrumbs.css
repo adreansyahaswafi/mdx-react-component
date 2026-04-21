@@ -1,0 +1,108 @@
+.edts-breadcrumbs {
+    width: 100%;
+    display: block;
+    padding: 4px 0;
+}
+
+.edts-breadcrumbs__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.edts-breadcrumbs__item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+}
+
+.edts-breadcrumbs__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    padding: 8px 12px;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    color: #475569;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.2;
+    text-decoration: none;
+}
+
+button.edts-breadcrumbs__link {
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+button.edts-breadcrumbs__link:hover {
+    background: #eff6ff;
+    color: #0f172a;
+}
+
+button.edts-breadcrumbs__link:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 0.18rem rgba(13, 110, 253, 0.18);
+}
+
+.edts-breadcrumbs__item--home-pill .edts-breadcrumbs__link {
+    background: linear-gradient(180deg, #f8fbff 0%, #eef5ff 100%);
+    border: 1px solid #dbe7f5;
+    color: #0f172a;
+}
+
+.edts-breadcrumbs__item--active .edts-breadcrumbs__link {
+    color: #0f172a;
+    font-weight: 800;
+}
+
+.edts-breadcrumbs__item--disabled .edts-breadcrumbs__link {
+    opacity: 0.55;
+}
+
+.edts-breadcrumbs__icon {
+    width: 16px;
+    height: 16px;
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.edts-breadcrumbs__icon img {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+}
+
+.edts-breadcrumbs__label {
+    min-width: 0;
+    white-space: nowrap;
+}
+
+.edts-breadcrumbs__separator {
+    color: #94a3b8;
+    font-size: 14px;
+    line-height: 1;
+    user-select: none;
+}
+
+.edts-breadcrumbs--compact .edts-breadcrumbs__list {
+    gap: 6px;
+}
+
+.edts-breadcrumbs--compact .edts-breadcrumbs__link {
+    padding: 6px 10px;
+    font-size: 13px;
+}
+
+.edts-breadcrumbs--compact .edts-breadcrumbs__separator {
+    font-size: 12px;
+}

@@ -1,6 +1,10 @@
 import { createElement } from "react";
 
 function getPreviewText(values) {
+    if (values.confirmPassword) {
+        return values.confirmPasswordMessage || "Passwords do not match.";
+    }
+
     if (values.required) {
         return values.requiredMessage || "This field is required.";
     }
@@ -21,13 +25,19 @@ function getPreviewText(values) {
 }
 
 export function preview(values) {
-    const label = values.label || "Input Label";
-    const placeholder = values.placeholder || `Enter ${label.toLowerCase()}`;
+    const label = values.label || (values.confirmPassword ? "Confirm Password" : "Input Label");
+    const placeholder = values.placeholder || (values.confirmPassword ? "Confirm your password" : `Enter ${label.toLowerCase()}`);
     const helperText = values.helperText || "Helper text appears here.";
     const validationText = getPreviewText(values);
     const showValidation = Boolean(validationText);
     const previewType = values.inputType === "password" ? "password" : "text";
-    const previewValue = values.inputType === "email" ? "name@example.com" : values.inputType === "tel" ? "+62 812 3456 7890" : placeholder;
+    const previewValue = values.inputType === "email"
+        ? "name@example.com"
+        : values.inputType === "tel"
+          ? "+62 812 3456 7890"
+          : values.inputType === "number"
+            ? "125"
+            : placeholder;
     const isPassword = values.inputType === "password";
 
     return (

@@ -54,6 +54,15 @@
                 </enumerationValues>
             </property>
 
+            <property key="rangeDisplayMode" type="enumeration" defaultValue="hideEnd">
+                <caption>Range Date Display</caption>
+                <description>Control whether the upper date display shows both start and end dates or only the start date.</description>
+                <enumerationValues>
+                    <enumerationValue key="full">Show Start + End</enumerationValue>
+                    <enumerationValue key="hideEnd">Show Start Only</enumerationValue>
+                </enumerationValues>
+            </property>
+
             <property key="selectionMode" type="enumeration" defaultValue="datetime">
                 <caption>Selection Mode</caption>
                 <description>Deprecated. The widget now focuses on a date flow with a start-end time range.</description>

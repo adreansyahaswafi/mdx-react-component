@@ -8,11 +8,19 @@
 }
 
 .edts-select-box__label {
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
     font-size: 13px;
     font-weight: 700;
     line-height: 1.4;
     color: #334155;
+}
+
+.edts-select-box__required {
+    color: #dc3545;
+    font-weight: 800;
+    line-height: 1;
 }
 
 .edts-select-box__control {
@@ -68,6 +76,34 @@
     overflow: hidden;
 }
 
+.edts-select-box__react-select__value-container--is-multi {
+    padding: 6px 10px !important;
+    gap: 6px;
+}
+
+.edts-select-box__react-select__multi-value {
+    margin: 0 !important;
+    border-radius: 999px !important;
+    background: #eef2ff !important;
+}
+
+.edts-select-box__react-select__multi-value__label {
+    padding: 4px 6px 4px 10px !important;
+    color: #4338ca !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+}
+
+.edts-select-box__react-select__multi-value__remove {
+    padding: 0 8px !important;
+    color: #6366f1 !important;
+}
+
+.edts-select-box__react-select__multi-value__remove:hover {
+    background: #c7d2fe !important;
+    color: #312e81 !important;
+}
+
 .edts-select-box__react-select__control--is-focused {
     border-color: #86b7fe;
     box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.2);
@@ -92,6 +128,47 @@
 
 .edts-select-box__react-select__option {
     border-radius: 8px;
+}
+
+.edts-select-box__option-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.edts-select-box__option-checkbox {
+    width: 18px;
+    height: 18px;
+    border: 1.5px solid #64748b;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    background: #ffffff;
+    color: #ffffff;
+    opacity: 1;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.edts-select-box__option-checkbox svg {
+    width: 12px;
+    height: 12px;
+    opacity: 0;
+}
+
+.edts-select-box__option-checkbox--checked {
+    background: #0d6efd;
+    border-color: #0d6efd;
+}
+
+.edts-select-box__option-checkbox--checked svg {
+    opacity: 1;
+}
+
+.edts-select-box__option-label {
+    flex: 1 1 auto;
+    min-width: 0;
 }
 
 .edts-select-box__react-select__placeholder {

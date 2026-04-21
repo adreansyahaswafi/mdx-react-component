@@ -1,23 +1,7 @@
 import { createElement } from "react";
 import { NavLink } from "react-router-dom";
 
-const navItems = [
-  {
-    to: "/form",
-    label: "Form Widgets",
-    meta: "Input, select, datepicker, form",
-  },
-  {
-    to: "/calendar",
-    label: "Calendar",
-    meta: "Day, month, list, drag, resize",
-  },
-  {
-    to: "/data",
-    label: "Data Widgets",
-    meta: "Board, chart, map",
-  },
-];
+import { sidebarSections } from "./sidebarConfig";
 
 export function Sidebar() {
   return (
@@ -31,20 +15,27 @@ export function Sidebar() {
       </div>
 
       <nav className="playground-sidebar__nav">
-        {navItems.map((item, index) => (
-          <NavLink
-            key={item.to}
-            to={item.to}
-            className={({ isActive }) =>
-              `playground-sidebar__link${isActive ? " is-active" : ""}`
-            }
-          >
-            <span className="playground-sidebar__link-index">
-              {String(index + 1).padStart(2, "0")}
-            </span>
-            <span className="playground-sidebar__link-label">{item.label}</span>
-            <span className="playground-sidebar__link-meta">{item.meta}</span>
-          </NavLink>
+        {sidebarSections.map((section) => (
+          <div key={section.title} className="playground-sidebar__section">
+            <div className="playground-sidebar__section-title">{section.title}</div>
+            <div className="playground-sidebar__section-links">
+              {section.items.map((item, index) => (
+                <NavLink
+                  key={item.to}
+                  to={item.to}
+                  className={({ isActive }) =>
+                    `playground-sidebar__link${isActive ? " is-active" : ""}`
+                  }
+                >
+                  <span className="playground-sidebar__link-index">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span className="playground-sidebar__link-label">{item.label}</span>
+                  <span className="playground-sidebar__link-meta">{item.meta}</span>
+                </NavLink>
+              ))}
+            </div>
+          </div>
         ))}
       </nav>
 

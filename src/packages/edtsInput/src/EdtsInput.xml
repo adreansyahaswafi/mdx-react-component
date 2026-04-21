@@ -11,9 +11,12 @@
         <propertyGroup caption="Binding">
             <property key="valueAttribute" type="attribute" required="true">
                 <caption>Value Attribute</caption>
-                <description>Select the string attribute from the current object that stores the input value.</description>
+                <description>Select the attribute from the current object that stores the input value.</description>
                 <attributeTypes>
                     <attributeType name="String" />
+                    <attributeType name="Integer" />
+                    <attributeType name="Long" />
+                    <attributeType name="Decimal" />
                 </attributeTypes>
             </property>
 
@@ -37,6 +40,7 @@
                 <description>Select the browser input type.</description>
                 <enumerationValues>
                     <enumerationValue key="text">Text</enumerationValue>
+                    <enumerationValue key="number">Number</enumerationValue>
                     <enumerationValue key="email">Email</enumerationValue>
                     <enumerationValue key="password">Password</enumerationValue>
                     <enumerationValue key="tel">Telephone</enumerationValue>
@@ -49,6 +53,22 @@
             <property key="required" type="boolean" required="true" defaultValue="false">
                 <caption>Required</caption>
                 <description>Require the user to enter a value.</description>
+            </property>
+
+            <property key="confirmPassword" type="boolean" required="true" defaultValue="false">
+                <caption>Confirm Password</caption>
+                <description>Validate this password field against another string attribute.</description>
+            </property>
+
+            <property key="confirmWithAttribute" type="attribute" required="false">
+                <caption>Compare With Attribute</caption>
+                <description>Select the original password attribute that this field must match.</description>
+                <attributeTypes>
+                    <attributeType name="String" />
+                    <attributeType name="Integer" />
+                    <attributeType name="Long" />
+                    <attributeType name="Decimal" />
+                </attributeTypes>
             </property>
 
             <property key="minLength" type="integer" required="true" defaultValue="0">
@@ -86,6 +106,11 @@
             <property key="patternMessage" type="string" required="true" defaultValue="The value format is invalid.">
                 <caption>Pattern Message</caption>
                 <description>Message shown when the regular expression rule fails.</description>
+            </property>
+
+            <property key="confirmPasswordMessage" type="string" required="true" defaultValue="Passwords do not match.">
+                <caption>Confirm Password Message</caption>
+                <description>Message shown when the password confirmation does not match the original password.</description>
             </property>
         </propertyGroup>
 

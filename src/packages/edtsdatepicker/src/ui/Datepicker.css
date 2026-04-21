@@ -89,6 +89,14 @@
     grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
 }
 
+.edts-datepicker__date-trigger--range-hidden-end {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.edts-datepicker__date-trigger--range-hidden-end .edts-datepicker__range-segment {
+    grid-template-columns: auto minmax(0, 1fr);
+}
+
 .edts-datepicker__trigger-icon {
     display: inline-flex;
     align-items: center;

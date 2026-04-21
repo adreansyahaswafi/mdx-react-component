@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="edts-mendix.edtsbreadcrumbs.EdtsBreadCrumbs" pluginWidget="true" needsEntityContext="false" offlineCapable="true" supportedPlatform="Web"
+    xmlns="http://www.mendix.com/widget/1.0/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/@mendix/pluggable-widgets-api/widget.xsd">
+
+    <name>EdtsBreadCrumbs</name>
+    <description>Manual breadcrumb navigation with Mendix icons, active state, and configurable separators.</description>
+    <icon />
+
+    <properties>
+        <propertyGroup caption="Items">
+            <property key="items" type="object" isList="true" required="true">
+                <caption>Breadcrumb Items</caption>
+                <description>Configure the breadcrumb trail items in order.</description>
+                <properties>
+                    <property key="label" type="string" required="true">
+                        <caption>Label</caption>
+                        <category>Content</category>
+                        <description>Text shown for this breadcrumb item.</description>
+                    </property>
+
+                    <property key="icon" type="icon" required="false">
+                        <caption>Icon</caption>
+                        <category>Content</category>
+                        <description>Select a Mendix icon to show before the label.</description>
+                    </property>
+
+                    <property key="active" type="boolean" required="true" defaultValue="false">
+                        <caption>Active</caption>
+                        <category>Behavior</category>
+                        <description>Mark this item as the current page.</description>
+                    </property>
+
+                    <property key="disabled" type="boolean" required="true" defaultValue="false">
+                        <caption>Disabled</caption>
+                        <category>Behavior</category>
+                        <description>Disable this item so it cannot be clicked.</description>
+                    </property>
+
+                    <property key="onClickAction" type="action" required="false">
+                        <caption>On Click</caption>
+                        <category>Behavior</category>
+                        <description>Optional action executed when the breadcrumb item is clicked.</description>
+                    </property>
+                </properties>
+            </property>
+        </propertyGroup>
+
+        <propertyGroup caption="Appearance">
+            <property key="showHomePill" type="boolean" required="true" defaultValue="false">
+                <caption>Show First Item Pill</caption>
+                <description>Render the first breadcrumb item as a pill-style entry.</description>
+            </property>
+
+            <property key="separatorStyle" type="enumeration" required="true" defaultValue="chevron">
+                <caption>Separator Style</caption>
+                <description>Choose the separator shown between breadcrumb items.</description>
+                <enumerationValues>
+                    <enumerationValue key="chevron">Chevron</enumerationValue>
+                    <enumerationValue key="slash">Slash</enumerationValue>
+                    <enumerationValue key="dot">Dot</enumerationValue>
+                </enumerationValues>
+            </property>
+
+            <property key="compact" type="boolean" required="true" defaultValue="false">
+                <caption>Compact</caption>
+                <description>Use tighter spacing for smaller layouts.</description>
+            </property>
+        </propertyGroup>
+    </properties>
+</widget>

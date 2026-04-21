@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="edts-mendix.edtsdatatable.EdtsDataTable" pluginWidget="true" needsEntityContext="true" offlineCapable="true" supportedPlatform="Web"
+    xmlns="http://www.mendix.com/widget/1.0/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/@mendix/pluggable-widgets-api/widget.xsd">
+
+    <name>EdtsDataTable</name>
+    <description>Filterable data table with search, sorting, filters, and configurable fields.</description>
+    <icon/>
+
+    <properties>
+        <propertyGroup caption="Data">
+            <property key="dataSource" type="datasource" isList="true" required="true">
+                <caption>Data Source</caption>
+                <description>List datasource used as the table rows.</description>
+            </property>
+
+            <property key="fields" type="object" isList="true" required="true">
+                <caption>Fields</caption>
+                <description>Add table fields. This is where you define new columns shown in the data table.</description>
+                <properties>
+                    <property key="header" type="string" required="true">
+                        <caption>Header</caption>
+                        <category>Content</category>
+                        <description>Column header label.</description>
+                    </property>
+
+                    <property key="valueAttr" type="attribute" dataSource="../dataSource" required="false">
+                        <caption>Value Attribute</caption>
+                        <category>Content</category>
+                        <description>Datasource attribute shown in this field.</description>
+                        <attributeTypes>
+                            <attributeType name="String"/>
+                            <attributeType name="Enum"/>
+                            <attributeType name="Integer"/>
+                            <attributeType name="Long"/>
+                            <attributeType name="Decimal"/>
+                            <attributeType name="Boolean"/>
+                            <attributeType name="DateTime"/>
+                        </attributeTypes>
+                        <associationTypes>
+                            <associationType name="Reference"/>
+                            <associationType name="ReferenceSet"/>
+                        </associationTypes>
+                    </property>
+
+                    <property key="filterAttr" type="attribute" dataSource="../dataSource" required="false">
+                        <caption>Filter Attribute</caption>
+                        <category>Content</category>
+                        <description>Optional datasource attribute used only for filtering. Leave empty to use Value Attribute.</description>
+                        <attributeTypes>
+                            <attributeType name="String"/>
+                            <attributeType name="Enum"/>
+                            <attributeType name="Integer"/>
+                            <attributeType name="Long"/>
+                            <attributeType name="Decimal"/>
+                            <attributeType name="Boolean"/>
+                            <attributeType name="DateTime"/>
+                        </attributeTypes>
+                    </property>
+
+                    <property key="dateDisplayFormat" type="string" required="false">
+                        <caption>Date Display Format</caption>
+                        <category>Content</category>
+                        <description>Optional display format for DateTime values, for example dd MMM yyyy, yyyy-MM-dd, or dd/MM/yyyy HH:mm.</description>
+                    </property>
+
+                    <property key="colorByAttr" type="attribute" dataSource="../dataSource" required="false">
+                        <caption>Color By Field</caption>
+                        <category>Style</category>
+                        <description>Optional string attribute used as the color indicator for this column, for example a room color like #2563eb.</description>
+                        <attributeTypes>
+                            <attributeType name="String"/>
+                        </attributeTypes>
+                    </property>
+
+                    <property key="align" type="enumeration" required="true" defaultValue="left">
+                        <caption>Align</caption>
+                        <category>Style</category>
+                        <description>Cell text alignment for this field.</description>
+                        <enumerationValues>
+                            <enumerationValue key="left">Left</enumerationValue>
+                            <enumerationValue key="center">Center</enumerationValue>
+                            <enumerationValue key="right">Right</enumerationValue>
+                        </enumerationValues>
+                    </property>
+
+                    <property key="sortable" type="boolean" required="true" defaultValue="true">
+                        <caption>Show Sort</caption>
+                        <category>Content</category>
+                        <description>Allow sorting only for this field.</description>
+                    </property>
+
+                    <property key="searchable" type="boolean" required="true" defaultValue="true">
+                        <caption>Searchable</caption>
+                        <category>Behavior</category>
+                        <description>Include this field in global search.</description>
+                    </property>
+
+                    <property key="visible" type="boolean" required="true" defaultValue="true">
+                        <caption>Visible</caption>
+                        <category>Content</category>
+                        <description>Show or hide this field in the rendered table.</description>
+                    </property>
+
+                    <property key="showFilter" type="boolean" required="true" defaultValue="false">
+                        <caption>Show Filter</caption>
+                        <category>Content</category>
+                        <description>Show only this field in the toolbar filter area.</description>
+                    </property>
+
+                    <property key="filterOptionsMode" type="enumeration" required="true" defaultValue="datasource">
+                        <caption>Filter Options Mode</caption>
+                        <category>Content</category>
+                        <description>Choose whether filter options come from a datasource or static values.</description>
+                        <enumerationValues>
+                            <enumerationValue key="datasource">Datasource</enumerationValue>
+                            <enumerationValue key="static">Static</enumerationValue>
+                        </enumerationValues>
+                    </property>
+
+                    <property key="filterOptionsSource" type="datasource" isList="true" required="false">
+                        <caption>Filter Options Source</caption>
+                        <category>Content</category>
+                        <description>Optional datasource from another entity used to build filter options. Leave empty to use the current table datasource.</description>
+                    </property>
+
+                    <property key="filterOptionLabelAttr" type="attribute" dataSource="filterOptionsSource" required="false">
+                        <caption>Filter Option Label</caption>
+                        <category>Content</category>
+                        <description>Label shown in the filter dropdown for datasource-based options.</description>
+                        <attributeTypes>
+                            <attributeType name="String"/>
+                            <attributeType name="Enum"/>
+                            <attributeType name="Integer"/>
+                            <attributeType name="Long"/>
+                            <attributeType name="Decimal"/>
+                            <attributeType name="Boolean"/>
+                            <attributeType name="DateTime"/>
+                        </attributeTypes>
+                    </property>
+
+                    <property key="filterOptionValueAttr" type="attribute" dataSource="filterOptionsSource" required="false">
+                        <caption>Filter Option Value</caption>
+                        <category>Content</category>
+                        <description>Value used internally when matching datasource-based filter options.</description>
+                        <attributeTypes>
+                            <attributeType name="String"/>
+                            <attributeType name="Enum"/>
+                            <attributeType name="Integer"/>
+                            <attributeType name="Long"/>
+                            <attributeType name="Decimal"/>
+                            <attributeType name="Boolean"/>
+                            <attributeType name="DateTime"/>
+                        </attributeTypes>
+                    </property>
+
+                    <property key="filterType" type="enumeration" required="true" defaultValue="none">
+                        <caption>Filter Type</caption>
+                        <category>Behavior</category>
+                        <description>Choose how this field should be filtered in the toolbar.</description>
+                        <enumerationValues>
+                            <enumerationValue key="none">None</enumerationValue>
+                            <enumerationValue key="select">Select</enumerationValue>
+                            <enumerationValue key="date">Date</enumerationValue>
+                        </enumerationValues>
+                    </property>
+                </properties>
+            </property>
+        </propertyGroup>
+
+        <propertyGroup caption="Toolbar">
+            <property key="title" type="string" required="false">
+                <caption>Title</caption>
+                <description>Optional title shown above the table.</description>
+            </property>
+
+            <property key="description" type="string" required="false">
+                <caption>Description</caption>
+                <description>Optional helper text shown under the title.</description>
+            </property>
+
+            <property key="showSearch" type="boolean" required="true" defaultValue="true">
+                <caption>Show Search</caption>
+                <description>Show the global search input.</description>
+            </property>
+
+            <property key="searchTitle" type="string" required="false">
+                <caption>Search Title</caption>
+                <description>Optional title shown above the search input.</description>
+            </property>
+
+            <property key="searchPlaceholder" type="string" required="false" defaultValue="Search table...">
+                <caption>Search Placeholder</caption>
+                <description>Placeholder text for the search input.</description>
+            </property>
+
+            <property key="showFilters" type="boolean" required="true" defaultValue="true">
+                <caption>Show Filter Bar</caption>
+                <description>Show the filter bar. Only fields with "Show Filter = Yes" will appear here.</description>
+            </property>
+
+            <property key="staticFilterOptions" type="object" isList="true" required="false">
+                <caption>Static Filter Options</caption>
+                <description>Define reusable static filter options in a table-like list. Use Field Header to match the target column when a field uses Filter Options Mode = Static.</description>
+                <properties>
+                    <property key="fieldHeader" type="string" required="true">
+                        <caption>Field Header</caption>
+                        <category>Content</category>
+                        <description>Match this with the target field header, for example Active or Status.</description>
+                    </property>
+
+                    <property key="label" type="string" required="true">
+                        <caption>Label</caption>
+                        <category>Content</category>
+                        <description>Text shown in the filter dropdown.</description>
+                    </property>
+
+                    <property key="value" type="string" required="true">
+                        <caption>Value</caption>
+                        <category>Content</category>
+                        <description>Internal value used when matching rows, for example true, false, active, or inactive.</description>
+                    </property>
+                </properties>
+            </property>
+        </propertyGroup>
+
+        <propertyGroup caption="Appearance">
+            <property key="rowsPerPage" type="integer" required="true" defaultValue="8">
+                <caption>Rows Per Page</caption>
+                <description>Maximum number of rows shown before pagination appears.</description>
+            </property>
+
+            <property key="compact" type="boolean" required="true" defaultValue="false">
+                <caption>Compact</caption>
+                <description>Use tighter spacing for a denser table layout.</description>
+            </property>
+
+            <property key="striped" type="boolean" required="true" defaultValue="true">
+                <caption>Striped Rows</caption>
+                <description>Alternate row backgrounds for readability.</description>
+            </property>
+
+            <property key="stickyHeader" type="boolean" required="true" defaultValue="true">
+                <caption>Sticky Header</caption>
+                <description>Keep the table header visible while scrolling.</description>
+            </property>
+
+            <property key="showRowNumbers" type="boolean" required="true" defaultValue="false">
+                <caption>Show Row Numbers</caption>
+                <description>Show a leading number column that follows pagination order.</description>
+            </property>
+
+            <property key="rowNumberHeader" type="string" required="false" defaultValue="No">
+                <caption>Row Number Header</caption>
+                <description>Optional header text for the row number column.</description>
+            </property>
+
+            <property key="emptyMessage" type="string" required="false" defaultValue="No rows found.">
+                <caption>Empty Message</caption>
+                <description>Shown when there is no data or nothing matches the current filters.</description>
+            </property>
+
+            <property key="paginationRounded" type="integer" required="true" defaultValue="10">
+                <caption>Pagination Rounded</caption>
+                <description>Border radius in pixels for pagination controls.</description>
+            </property>
+
+            <property key="disablePreviousDates" type="boolean" required="true" defaultValue="false">
+                <caption>Disable Previous Dates</caption>
+                <description>Disable dates before today in date filters.</description>
+            </property>
+
+            <property key="showMonthDropdown" type="boolean" required="true" defaultValue="true">
+                <caption>Show Month Dropdown</caption>
+                <description>Allow changing month from the date filter calendar.</description>
+            </property>
+
+            <property key="showYearDropdown" type="boolean" required="true" defaultValue="true">
+                <caption>Show Year Dropdown</caption>
+                <description>Allow changing year from the date filter calendar.</description>
+            </property>
+        </propertyGroup>
+
+        <propertyGroup caption="Actions">
+            <property key="onRowClick" type="action" dataSource="dataSource" required="false">
+                <caption>On Row Click</caption>
+                <description>Optional action executed when a row is clicked.</description>
+            </property>
+
+            <property key="showActionsColumn" type="boolean" required="true" defaultValue="false">
+                <caption>Show Actions Column</caption>
+                <description>Show a dedicated actions column with row-level buttons.</description>
+            </property>
+
+            <property key="actionsHeader" type="string" required="false" defaultValue="Actions">
+                <caption>Actions Header</caption>
+                <description>Optional header text for the actions column.</description>
+            </property>
+
+            <property key="showEditAction" type="boolean" required="true" defaultValue="true">
+                <caption>Show Edit Action</caption>
+                <description>Show the edit button in the actions column.</description>
+            </property>
+
+            <property key="editAction" type="action" dataSource="dataSource" required="false">
+                <caption>Edit Action</caption>
+                <description>Action executed when the edit button is clicked.</description>
+            </property>
+
+            <property key="editButtonLabel" type="string" required="false">
+                <caption>Edit Button Label</caption>
+                <description>Optional label shown next to the edit icon.</description>
+            </property>
+
+            <property key="showDeleteAction" type="boolean" required="true" defaultValue="true">
+                <caption>Show Delete Action</caption>
+                <description>Show the delete button in the actions column.</description>
+            </property>
+
+            <property key="deleteAction" type="action" dataSource="dataSource" required="false">
+                <caption>Delete Action</caption>
+                <description>Action executed when the delete button is clicked.</description>
+            </property>
+
+            <property key="deleteButtonLabel" type="string" required="false">
+                <caption>Delete Button Label</caption>
+                <description>Optional label shown next to the delete icon.</description>
+            </property>
+        </propertyGroup>
+    </properties>
+</widget>

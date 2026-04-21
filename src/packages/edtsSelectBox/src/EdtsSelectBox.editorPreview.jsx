@@ -1,11 +1,34 @@
 import { createElement } from "react";
 
+function isEnabled(value, fallback = false) {
+  if (typeof value === "boolean") {
+    return value;
+  }
+
+  if (value && typeof value === "object") {
+    if (typeof value.value === "boolean") {
+      return value.value;
+    }
+
+    if (typeof value.value === "string") {
+      return value.value === "true";
+    }
+  }
+
+  if (typeof value === "string") {
+    return value === "true";
+  }
+
+  return fallback;
+}
+
 export function preview(values) {
   const label = values.label || "Select Label";
   const placeholder = values.placeholder || "Choose an option";
-  const showValidation = Boolean(values.required);
+  const showValidation = isEnabled(values.required);
   const helperText = values.helperText || "Helper text appears here.";
   const validationText = values.requiredMessage || "This field is required.";
+  const isMulti = values.selectType === "association" && isEnabled(values.allowMultiple);
   const typeLabel =
     values.selectType === "boolean"
       ? "Boolean"
@@ -43,8 +66,8 @@ export function preview(values) {
       </label>
       <div
         style={{
-          minHeight: 40,
-          padding: "9px 14px",
+          minHeight: isMulti ? 48 : 40,
+          padding: isMulti ? "8px 10px" : "9px 14px",
           borderRadius: 12,
           border: showValidation ? "1px solid #dc3545" : "1px solid #ced4da",
           background: "#ffffff",
@@ -57,7 +80,14 @@ export function preview(values) {
             : "none",
         }}
       >
-        {placeholder}
+        {isMulti ? (
+          <div style={{ display: "flex", gap: 6, flexWrap: "wrap", alignItems: "center" }}>
+            <span style={chipStyle}>Option A</span>
+            <span style={chipStyle}>Option B</span>
+          </div>
+        ) : (
+          placeholder
+        )}
       </div>
       {showValidation ? (
         <div
@@ -86,3 +116,14 @@ export function preview(values) {
     </div>
   );
 }
+
+const chipStyle = {
+  display: "inline-flex",
+  alignItems: "center",
+  padding: "4px 10px",
+  borderRadius: 999,
+  background: "#eef2ff",
+  color: "#4338ca",
+  fontSize: 12,
+  fontWeight: 700,
+};

@@ -1,0 +1,202 @@
+.edts-check-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom:20px;
+}
+
+.edts-check-box__label {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #334155;
+}
+
+.edts-check-box__required {
+    color: #dc3545;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.edts-check-box__group {
+    display: grid;
+    gap: 10px;
+}
+
+.edts-check-box__group--horizontal {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.edts-check-box__option {
+    position: relative;
+    display: grid;
+    grid-template-columns: 20px minmax(0, 1fr);
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 14px 16px;
+    border-radius: 14px;
+    border: 1px solid #dbe5f2;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.edts-check-box__option--compact {
+    align-items: center;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.edts-check-box__option--compact .edts-check-box__control {
+    margin-top: 0;
+}
+
+.edts-check-box__option:hover {
+    border-color: #bfdbfe;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+}
+
+.edts-check-box__option--checked {
+    border-color: #93c5fd;
+    background: linear-gradient(180deg, #ffffff 0%, #eff6ff 100%);
+}
+
+.edts-check-box__option--simple {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.edts-check-box__option--simple:hover {
+    border: 0;
+    box-shadow: none;
+}
+
+.edts-check-box__option--disabled {
+    opacity: 0.68;
+    cursor: not-allowed;
+}
+
+.edts-check-box__control {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    margin-top: 1px;
+}
+
+input[type=checkbox].edts-check-box__input {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    opacity: 0 !important;
+    cursor: inherit !important;
+    appearance: none !important;
+    -moz-appearance: none !important;
+    -webkit-appearance: none !important;
+    transform: translateZ(0);
+    border: 0 !important;
+    background: transparent !important;
+}
+
+.edts-check-box__indicator {
+    width: 20px;
+    height: 20px;
+    border-radius: 6px;
+    border: 1.5px solid #64748b;
+    background: #ffffff;
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.edts-check-box__indicator svg {
+    width: 13px;
+    height: 13px;
+    opacity: 0;
+}
+
+.edts-check-box__input:focus-visible + .edts-check-box__indicator {
+    box-shadow: 0 0 0 0.18rem rgba(13, 110, 253, 0.18);
+}
+
+.edts-check-box__input:checked + .edts-check-box__indicator {
+    background: #0d6efd;
+    border-color: #0d6efd;
+}
+
+.edts-check-box__input:checked + .edts-check-box__indicator svg {
+    opacity: 1;
+}
+
+.edts-check-box__content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.edts-check-box__option--compact .edts-check-box__content {
+    justify-content: center;
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.edts-check-box__option-label {
+    color: #0f172a;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.45;
+    word-break: break-word;
+}
+
+.edts-check-box__option--compact .edts-check-box__option-label {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.2;
+}
+
+.edts-check-box__option-description {
+    color: #64748b;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.edts-check-box__helper {
+    color: #6c757d;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.edts-check-box__messages {
+    display: grid;
+    gap: 4px;
+}
+
+.edts-check-box__message {
+    color: #dc3545;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.edts-check-box--invalid .edts-check-box__option {
+    border-color: #f5c2c7;
+}
+
+.edts-check-box--readonly .edts-check-box__option {
+    cursor: not-allowed;
+}

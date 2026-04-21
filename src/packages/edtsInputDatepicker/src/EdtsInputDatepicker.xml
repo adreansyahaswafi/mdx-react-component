@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="edts-mendix.edtsinputdatepicker.EdtsInputDatepicker" pluginWidget="true" needsEntityContext="true" offlineCapable="true" supportedPlatform="Web"
+    xmlns="http://www.mendix.com/widget/1.0/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/@mendix/pluggable-widgets-api/widget.xsd">
+
+    <name>EdtsInputDatepicker</name>
+    <description>Input-style datepicker that follows the visual pattern of EdtsInput.</description>
+    <icon />
+
+    <properties>
+        <propertyGroup caption="Binding">
+            <property key="valueAttribute" type="attribute" required="true">
+                <caption>Value Attribute</caption>
+                <description>Select the DateTime attribute from the current object that stores the picker value.</description>
+                <attributeTypes>
+                    <attributeType name="DateTime" />
+                </attributeTypes>
+            </property>
+
+            <property key="minDateAttribute" type="attribute" required="false">
+                <caption>Minimum Date Attribute</caption>
+                <description>Optional DateTime attribute used as the minimum selectable date.</description>
+                <attributeTypes>
+                    <attributeType name="DateTime" />
+                </attributeTypes>
+            </property>
+
+            <property key="maxDateAttribute" type="attribute" required="false">
+                <caption>Maximum Date Attribute</caption>
+                <description>Optional DateTime attribute used as the maximum selectable date.</description>
+                <attributeTypes>
+                    <attributeType name="DateTime" />
+                </attributeTypes>
+            </property>
+
+            <property key="label" type="string" required="false">
+                <caption>Label</caption>
+                <description>Optional field label shown above the input.</description>
+            </property>
+
+            <property key="placeholder" type="string" required="false">
+                <caption>Placeholder</caption>
+                <description>Optional placeholder text shown inside the input.</description>
+            </property>
+
+            <property key="helperText" type="string" required="false">
+                <caption>Helper Text</caption>
+                <description>Optional helper text shown below the input when there is no validation error.</description>
+            </property>
+        </propertyGroup>
+
+        <propertyGroup caption="Display">
+            <property key="selectionMode" type="enumeration" required="true" defaultValue="date">
+                <caption>Selection Mode</caption>
+                <description>Choose whether the picker selects only a date or a date with time.</description>
+                <enumerationValues>
+                    <enumerationValue key="date">Date</enumerationValue>
+                    <enumerationValue key="datetime">Date Time</enumerationValue>
+                </enumerationValues>
+            </property>
+
+            <property key="dateFormatPattern" type="string" required="false">
+                <caption>Format</caption>
+                <description>Optional react-datepicker format string such as dd MMM yyyy or dd MMM yyyy HH:mm.</description>
+            </property>
+
+            <property key="showCalendarIcon" type="boolean" required="true" defaultValue="true">
+                <caption>Show Calendar Icon</caption>
+                <description>Show the calendar icon inside the input.</description>
+            </property>
+
+            <property key="showMonthDropdown" type="boolean" required="true" defaultValue="true">
+                <caption>Show Month Dropdown</caption>
+                <description>Allow changing month from the dropdown inside the calendar.</description>
+            </property>
+
+            <property key="showYearDropdown" type="boolean" required="true" defaultValue="true">
+                <caption>Show Year Dropdown</caption>
+                <description>Allow changing year from the dropdown inside the calendar.</description>
+            </property>
+
+            <property key="allowClear" type="boolean" required="true" defaultValue="true">
+                <caption>Allow Clear</caption>
+                <description>Show a clear button when the input already has a value.</description>
+            </property>
+
+            <property key="disabled" type="boolean" required="true" defaultValue="false">
+                <caption>Disabled</caption>
+                <description>Disable the picker so users cannot open or change it.</description>
+            </property>
+        </propertyGroup>
+
+        <propertyGroup caption="Validation">
+            <property key="required" type="boolean" required="true" defaultValue="false">
+                <caption>Required</caption>
+                <description>Require the user to select a value.</description>
+            </property>
+
+            <property key="requiredMessage" type="string" required="true" defaultValue="This field is required.">
+                <caption>Required Message</caption>
+                <description>Message shown when no date is selected.</description>
+            </property>
+
+            <property key="validateOnChange" type="boolean" required="true" defaultValue="true">
+                <caption>Validate On Change</caption>
+                <description>Validate while the user is changing the date.</description>
+            </property>
+        </propertyGroup>
+
+        <propertyGroup caption="Behavior">
+            <property key="disablePreviousDates" type="boolean" required="true" defaultValue="false">
+                <caption>Disable Previous Dates</caption>
+                <description>Disable dates before today.</description>
+            </property>
+
+            <property key="onChangeAction" type="action" required="false">
+                <caption>On Change</caption>
+                <description>Optional action executed after the value changes.</description>
+            </property>
+
+            <property key="onBlurAction" type="action" required="false">
+                <caption>On Blur</caption>
+                <description>Optional action executed when the picker closes.</description>
+            </property>
+        </propertyGroup>
+    </properties>
+</widget>

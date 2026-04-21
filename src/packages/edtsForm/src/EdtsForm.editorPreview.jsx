@@ -6,6 +6,7 @@ export function preview(values) {
         contentPreview && typeof contentPreview === "object" && contentPreview.renderer ? contentPreview.renderer : null;
     const footerJustify = values.footerAlign === "left" ? "flex-start" : "flex-end";
     const footerFullWidth = values.fullWidthButtons === true;
+    const showBuiltInButtons = values.showActionButtons !== false;
 
     return (
         <div
@@ -36,7 +37,7 @@ export function preview(values) {
                     </>
                 )}
             </div>
-            {values.showFooter !== false ? (
+            {showBuiltInButtons && values.showFooter !== false ? (
                 <div style={{ display: "flex", justifyContent: footerJustify, gap: 10, marginTop: 16, width: "100%" }}>
                     {values.showCancelButton ? (
                         <div

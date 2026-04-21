@@ -8,6 +8,7 @@ export function getProperties(values, defaultProperties) {
     delete defaultProperties.properties.associationValue;
     delete defaultProperties.properties.optionsSource;
     delete defaultProperties.properties.optionLabelAttr;
+    delete defaultProperties.properties.allowMultiple;
   }
 
   if (values.selectType === "association" && defaultProperties.properties) {

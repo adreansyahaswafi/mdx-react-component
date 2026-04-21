@@ -28,6 +28,11 @@
         </propertyGroup>
 
         <propertyGroup caption="Actions">
+            <property key="showActionButtons" type="boolean" required="true" defaultValue="true">
+                <caption>Show Action Buttons</caption>
+                <description>Show or hide the built-in submit and cancel form buttons.</description>
+            </property>
+
             <property key="submitCaption" type="string" required="true" defaultValue="Submit">
                 <caption>Submit Caption</caption>
                 <description>Caption shown on the primary submit button.</description>

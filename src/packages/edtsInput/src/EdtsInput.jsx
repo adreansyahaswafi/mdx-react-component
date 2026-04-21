@@ -45,11 +45,14 @@ function parsePatternConfig(pattern) {
 
 function getValidationMessages({
     value,
+    confirmWithValue,
     required,
+    confirmPassword,
     minLength,
     maxLength,
     pattern,
     requiredMessage,
+    confirmPasswordMessage,
     minLengthMessage,
     maxLengthMessage,
     patternMessage,
@@ -66,6 +69,10 @@ function getValidationMessages({
 
     if (required && !trimmedValue) {
         messages.push(requiredMessage || "This field is required.");
+    }
+
+    if (confirmPassword && normalizedValue && normalizedValue !== (confirmWithValue || "")) {
+        messages.push(confirmPasswordMessage || "Passwords do not match.");
     }
 
     if (trimmedValue && typeof minLength === "number" && minLength > 0 && normalizedValue.length < minLength) {
@@ -98,10 +105,13 @@ export function EdtsInput({
     helperText,
     inputType,
     required,
+    confirmPassword,
+    confirmWithAttribute,
     minLength,
     maxLength,
     pattern,
     requiredMessage,
+    confirmPasswordMessage,
     minLengthMessage,
     maxLengthMessage,
     patternMessage,
@@ -116,8 +126,10 @@ export function EdtsInput({
     const inputId = useId();
     const messageId = useId();
     const isPasswordField = inputType === "password";
+    const isConfirmPassword = isPasswordField && Boolean(confirmPassword);
     const resolvedInputType = isPasswordField && showPassword ? "text" : inputType || "text";
     const patternConfig = useMemo(() => parsePatternConfig(pattern), [pattern]);
+    const compareWithValue = getValue(confirmWithAttribute);
 
     useEffect(() => {
         setLocalValue(getValue(valueAttribute));
@@ -126,11 +138,14 @@ export function EdtsInput({
     const validationMessages = useMemo(() => {
         return getValidationMessages({
             value: localValue,
+            confirmWithValue: compareWithValue,
             required,
+            confirmPassword: isConfirmPassword,
             minLength,
             maxLength,
             pattern,
             requiredMessage,
+            confirmPasswordMessage,
             minLengthMessage,
             maxLengthMessage,
             patternMessage,
@@ -138,11 +153,14 @@ export function EdtsInput({
         });
     }, [
         localValue,
+        compareWithValue,
         required,
+        isConfirmPassword,
         minLength,
         maxLength,
         pattern,
         requiredMessage,
+        confirmPasswordMessage,
         minLengthMessage,
         maxLengthMessage,
         patternMessage,
@@ -158,8 +176,12 @@ export function EdtsInput({
         setLocalValue(nextValue);
         setDirty(true);
 
-        if (valueAttribute && typeof valueAttribute.setValue === "function" && !valueAttribute.readOnly) {
-            valueAttribute.setValue(nextValue);
+        if (valueAttribute && !valueAttribute.readOnly) {
+            if (typeof valueAttribute.setTextValue === "function") {
+                valueAttribute.setTextValue(nextValue);
+            } else if (typeof valueAttribute.setValue === "function") {
+                valueAttribute.setValue(nextValue);
+            }
         }
 
         executeAction(onChangeAction);
@@ -180,7 +202,8 @@ export function EdtsInput({
         <div className={classNames("edts-input", { "edts-input--invalid": isInvalid, "edts-input--readonly": valueAttribute?.readOnly })}>
             {label ? (
                 <label className="edts-input__label" htmlFor={inputId}>
-                    {label}
+                    <span>{label}</span>
+                    {required ? <span className="edts-input__required">*</span> : null}
                 </label>
             ) : null}
             <div className={classNames("edts-input__control", { "edts-input__control--password": isPasswordField })}>
@@ -198,6 +221,7 @@ export function EdtsInput({
                     minLength={typeof minLength === "number" && minLength > 0 ? minLength : undefined}
                     maxLength={typeof maxLength === "number" && maxLength > 0 ? maxLength : undefined}
                     pattern={patternConfig?.source || undefined}
+                    autoComplete={isConfirmPassword ? "new-password" : undefined}
                     aria-invalid={isInvalid}
                     aria-describedby={isInvalid ? messageId : undefined}
                 />

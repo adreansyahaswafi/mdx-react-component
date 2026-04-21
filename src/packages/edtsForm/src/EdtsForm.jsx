@@ -13,6 +13,7 @@ export function EdtsForm({
     title,
     description,
     content,
+    showActionButtons,
     submitCaption,
     cancelCaption,
     showCancelButton,
@@ -24,13 +25,20 @@ export function EdtsForm({
     fullWidthButtons,
     compact
 }) {
+    const hasBuiltInButtons = showActionButtons !== false;
+
     function handleSubmit(event) {
         event.preventDefault();
+
+        if (!hasBuiltInButtons) {
+            return;
+        }
+
         executeAction(onSubmitAction);
     }
 
     function handleKeyDown(event) {
-        if (!submitOnEnter || event.key !== "Enter") {
+        if (!hasBuiltInButtons || !submitOnEnter || event.key !== "Enter") {
             return;
         }
 
@@ -54,7 +62,7 @@ export function EdtsForm({
 
             <div className="edts-form__body">{content}</div>
 
-            {showFooter ? (
+            {showFooter && hasBuiltInButtons ? (
                 <div
                     className={classNames(
                         "edts-form__footer",

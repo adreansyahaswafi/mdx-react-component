@@ -208,7 +208,8 @@ a {
   display: flex;
   flex-direction: column;
   gap: 18px;
-  min-height: calc(100vh - 32px);
+  height: calc(100vh - 32px);
+  max-height: calc(100vh - 32px);
   padding: 22px 18px;
   border: 1px solid rgba(203, 213, 225, 0.9);
   border-radius: 28px;
@@ -216,6 +217,7 @@ a {
     linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 250, 252, 0.92) 100%);
   box-shadow: 0 14px 34px rgba(15, 23, 42, 0.06);
   backdrop-filter: blur(16px);
+  overflow: hidden;
 }
 
 .playground-sidebar__brand {
@@ -246,7 +248,44 @@ a {
 
 .playground-sidebar__nav {
   display: grid;
+  gap: 16px;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 6px;
+}
+
+.playground-sidebar__nav::-webkit-scrollbar {
+  width: 8px;
+}
+
+.playground-sidebar__nav::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(148, 163, 184, 0.45);
+}
+
+.playground-sidebar__nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.playground-sidebar__section {
+  display: grid;
   gap: 10px;
+}
+
+.playground-sidebar__section-links {
+  display: grid;
+  gap: 10px;
+}
+
+.playground-sidebar__section-title {
+  padding: 0 4px;
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 .playground-sidebar__link {
@@ -496,6 +535,12 @@ a {
   gap: 18px;
 }
 
+.playground-button-stack {
+  display: grid;
+  gap: 16px;
+  max-width: 420px;
+}
+
 .playground-calendar-shell {
   display: grid;
   gap: 16px;
@@ -558,6 +603,12 @@ a {
 
 .playground-detail-card-shell {
   margin-top: 18px;
+}
+
+.playground-profile-stage {
+  display: flex;
+  justify-content: flex-end;
+  padding: 8px 4px 180px;
 }
 
 .playground-detail-card-visual {

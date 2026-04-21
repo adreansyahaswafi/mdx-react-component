@@ -9,10 +9,18 @@
 }
 
 .edts-input__label {
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
     font-weight: 700;
     color: #334155;
     line-height: 1.4;
+}
+
+.edts-input__required {
+    color: #dc3545;
+    font-weight: 800;
+    line-height: 1;
 }
 
 .edts-input__control {

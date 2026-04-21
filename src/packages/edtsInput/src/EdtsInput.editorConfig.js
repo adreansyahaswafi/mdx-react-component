@@ -4,6 +4,17 @@
  * @returns {object}
  */
 export function getProperties(values, defaultProperties) {
+    if (values.inputType !== "password" && defaultProperties.properties) {
+        delete defaultProperties.properties.confirmPassword;
+        delete defaultProperties.properties.confirmWithAttribute;
+        delete defaultProperties.properties.confirmPasswordMessage;
+    }
+
+    if (!values.confirmPassword && defaultProperties.properties) {
+        delete defaultProperties.properties.confirmWithAttribute;
+        delete defaultProperties.properties.confirmPasswordMessage;
+    }
+
     return defaultProperties;
 }
 
@@ -38,6 +49,28 @@ export function check(values) {
                 studioUrl: ""
             });
         }
+    }
+
+    if (values.confirmPassword && values.inputType !== "password") {
+        errors.push({
+            property: "confirmPassword",
+            severity: "error",
+            message: "Confirm Password can only be used when Input Type is Password.",
+            studioMessage: "Use Password input type for confirmation.",
+            url: "",
+            studioUrl: ""
+        });
+    }
+
+    if (values.confirmPassword && !values.confirmWithAttribute) {
+        errors.push({
+            property: "confirmWithAttribute",
+            severity: "error",
+            message: "Select Compare With Attribute when Confirm Password is enabled.",
+            studioMessage: "Select an attribute to compare with.",
+            url: "",
+            studioUrl: ""
+        });
     }
 
     return errors;

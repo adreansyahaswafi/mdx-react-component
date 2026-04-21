@@ -225,7 +225,7 @@ function renderCustomHeader({ date, decreaseMonth, increaseMonth, prevMonthButto
 }
 
 const SingleDateInput = forwardRef(function SingleDateInput(
-    { value, onClick, placeholder, disabled, showCalendarIcon },
+    { value, onClick, placeholder, disabled, showCalendarIcon, onOpenRequest },
     ref
 ) {
     return (
@@ -234,7 +234,19 @@ const SingleDateInput = forwardRef(function SingleDateInput(
             className={classNames("edts-datepicker__date-trigger", {
                 "edts-datepicker__date-trigger--disabled": disabled
             })}
-            onClick={disabled ? undefined : onClick}
+            onClick={
+                disabled
+                    ? undefined
+                    : event => {
+                          if (typeof onOpenRequest === "function") {
+                              onOpenRequest();
+                          }
+
+                          if (typeof onClick === "function") {
+                              onClick(event);
+                          }
+                      }
+            }
             ref={ref}
             disabled={disabled}
         >
@@ -254,7 +266,7 @@ const SingleDateInput = forwardRef(function SingleDateInput(
 });
 
 const RangeDateInput = forwardRef(function RangeDateInput(
-    { value, onClick, disabled, showCalendarIcon, startPlaceholder, endPlaceholder },
+    { value, onClick, disabled, showCalendarIcon, startPlaceholder, endPlaceholder, hideEndDisplay, onOpenRequest },
     ref
 ) {
     const [startText, endText] = splitRangeValue(value);
@@ -262,10 +274,27 @@ const RangeDateInput = forwardRef(function RangeDateInput(
     return (
         <button
             type="button"
-            className={classNames("edts-datepicker__date-trigger", "edts-datepicker__date-trigger--range", {
-                "edts-datepicker__date-trigger--disabled": disabled
-            })}
-            onClick={disabled ? undefined : onClick}
+            className={classNames(
+                "edts-datepicker__date-trigger",
+                "edts-datepicker__date-trigger--range",
+                {
+                    "edts-datepicker__date-trigger--disabled": disabled,
+                    "edts-datepicker__date-trigger--range-hidden-end": hideEndDisplay
+                }
+            )}
+            onClick={
+                disabled
+                    ? undefined
+                    : event => {
+                          if (typeof onOpenRequest === "function") {
+                              onOpenRequest();
+                          }
+
+                          if (typeof onClick === "function") {
+                              onClick(event);
+                          }
+                      }
+            }
             ref={ref}
             disabled={disabled}
         >
@@ -282,22 +311,26 @@ const RangeDateInput = forwardRef(function RangeDateInput(
                     </span>
                 </span>
             </span>
-            <span className="edts-datepicker__range-divider" aria-hidden="true">
-                →
-            </span>
-            <span className="edts-datepicker__range-segment">
-                {showCalendarIcon ? (
-                    <span className="edts-datepicker__trigger-icon" aria-hidden="true">
-                        <CalendarIcon />
+            {hideEndDisplay ? null : (
+                <>
+                    <span className="edts-datepicker__range-divider" aria-hidden="true">
+                        →
                     </span>
-                ) : null}
-                <span className="edts-datepicker__range-field">
-                    <span className="edts-datepicker__trigger-label">End date</span>
-                    <span className={classNames("edts-datepicker__trigger-value", { "is-placeholder": !endText })}>
-                        {endText || endPlaceholder || "Choose end"}
+                    <span className="edts-datepicker__range-segment">
+                        {showCalendarIcon ? (
+                            <span className="edts-datepicker__trigger-icon" aria-hidden="true">
+                                <CalendarIcon />
+                            </span>
+                        ) : null}
+                        <span className="edts-datepicker__range-field">
+                            <span className="edts-datepicker__trigger-label">End date</span>
+                            <span className={classNames("edts-datepicker__trigger-value", { "is-placeholder": !endText })}>
+                                {endText || endPlaceholder || "Choose end"}
+                            </span>
+                        </span>
                     </span>
-                </span>
-            </span>
+                </>
+            )}
         </button>
     );
 });
@@ -313,6 +346,7 @@ export function Datepicker({
     endPlaceholderText,
     helperText,
     dateFormatPattern,
+    rangeDisplayMode,
     showCalendarIcon,
     allowClear,
     dateReadOnly,
@@ -328,6 +362,7 @@ export function Datepicker({
     const maxDate = maxDateAttribute ? toDateValue(maxDateAttribute.value) : null;
     const timeOptions = useMemo(buildTimeOptions, []);
     const isRangeMode = pickerMode === "range";
+    const hideEndDateDisplay = isRangeMode && rangeDisplayMode !== "full";
     const hasEndAttribute = Boolean(endDateAttribute && typeof endDateAttribute.setValue === "function");
     const readOnly =
         Boolean(disabled) ||
@@ -359,8 +394,7 @@ export function Datepicker({
         configError ||
         (needsEndDateSelection ? "Choose an end date to finish the range and enable the end time." : helperTextValue);
     const dateFormat = dateFormatPattern || "dd MMM yyyy";
-    const dateSelectionLocked =
-        !readOnly && (Boolean(dateReadOnly) || (isRangeMode ? Boolean(startDay && endDay) : Boolean(startDay)));
+    const dateSelectionLocked = !readOnly && Boolean(dateReadOnly);
     const dateTriggerDisabled = readOnly || dateSelectionLocked;
 
     useEffect(() => {
@@ -521,11 +555,15 @@ export function Datepicker({
                 <div className="edts-datepicker__mode-badge">{isRangeMode ? "Date range" : "Single date"}</div>
                 <div className="edts-datepicker__summary">
                     {isRangeMode ? (
-                        <>
+                        hideEndDateDisplay ? (
                             <span>{startDay ? formatDateLabel(startDay) : "Choose start"}</span>
-                            <span className="edts-datepicker__summary-arrow">→</span>
-                            <span>{endDay ? formatDateLabel(endDay) : "Choose end"}</span>
-                        </>
+                        ) : (
+                            <>
+                                <span>{startDay ? formatDateLabel(startDay) : "Choose start"}</span>
+                                <span className="edts-datepicker__summary-arrow">→</span>
+                                <span>{endDay ? formatDateLabel(endDay) : "Choose end"}</span>
+                            </>
+                        )
                     ) : (
                         <span>{startDay ? formatDateLabel(startDay) : "Choose a date first"}</span>
                     )}
@@ -566,6 +604,8 @@ export function Datepicker({
                             startPlaceholder={placeholderText}
                             endPlaceholder={endPlaceholderText}
                             disabled={dateTriggerDisabled}
+                            hideEndDisplay={hideEndDateDisplay}
+                            onOpenRequest={() => setIsCalendarOpen(true)}
                         />
                     }
                 />
@@ -599,6 +639,7 @@ export function Datepicker({
                             placeholder={placeholderText}
                             disabled={dateTriggerDisabled}
                             showCalendarIcon={showCalendarIcon}
+                            onOpenRequest={() => setIsCalendarOpen(true)}
                         />
                     }
                 />

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="edts-mendix.edtssidebar.EdtsSidebar" pluginWidget="true" needsEntityContext="false" offlineCapable="true" supportedPlatform="Web"
+    xmlns="http://www.mendix.com/widget/1.0/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/@mendix/pluggable-widgets-api/widget.xsd">
+
+    <name>EdtsSidebar</name>
+    <description>Application shell chrome with custom sidebar and header slots. Main content stays in the Mendix layout.</description>
+    <icon/>
+
+    <properties>
+        <propertyGroup caption="Brand And Header">
+            <property key="logoImageUrl" type="string" required="false">
+                <caption>Logo Image URL</caption>
+                <description>Optional image URL shown inside the white logo card in the header.</description>
+            </property>
+
+            <property key="logoText" type="string" required="true" defaultValue="EDTS">
+                <caption>Logo Text</caption>
+                <description>Fallback text shown when Logo Image URL is empty.</description>
+            </property>
+
+            <property key="brandName" type="string" required="false" defaultValue="EDTS">
+                <caption>Brand Name</caption>
+                <description>Accessible brand label used for image alt text and preview context.</description>
+            </property>
+
+        </propertyGroup>
+
+        <propertyGroup caption="Slots">
+            <property key="navigationContent" type="widgets" required="false">
+                <caption>Navigation Content</caption>
+                <description>Drag a Mendix Navigation tree, Menu bar, or Pop-up menu here.</description>
+            </property>
+
+            <property key="profileContent" type="widgets" required="false">
+                <caption>Profile Content</caption>
+                <description>Optional content rendered on the right side of the header, for example EdtsProfileDropDown.</description>
+            </property>
+        </propertyGroup>
+
+        <propertyGroup caption="Appearance">
+            <property key="variant" type="enumeration" required="true" defaultValue="blue">
+                <caption>Variant</caption>
+                <description>Choose the blue shell shade.</description>
+                <enumerationValues>
+                    <enumerationValue key="blue">Blue</enumerationValue>
+                    <enumerationValue key="darkBlue">Dark Blue</enumerationValue>
+                </enumerationValues>
+            </property>
+
+            <property key="compact" type="boolean" required="true" defaultValue="false">
+                <caption>Compact Sidebar</caption>
+                <description>Use a narrower sidebar rail.</description>
+            </property>
+        </propertyGroup>
+    </properties>
+</widget>

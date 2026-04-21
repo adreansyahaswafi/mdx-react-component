@@ -1,6 +1,6 @@
 import { createElement, useId, useMemo, useState } from "react";
 import classNames from "classnames";
-import Select from "react-select";
+import Select, { components } from "react-select";
 
 import "./ui/EdtsSelectBox.css";
 
@@ -25,6 +25,108 @@ function getEditableValue(attribute) {
   }
 
   return String(attribute.value);
+}
+
+function getDisplayValue(attribute) {
+  if (!attribute) {
+    return "";
+  }
+
+  if (typeof attribute.displayValue === "string" && attribute.displayValue) {
+    return attribute.displayValue;
+  }
+
+  return getEditableValue(attribute);
+}
+
+function isEnabled(value, fallback = false) {
+  if (typeof value === "boolean") {
+    return value;
+  }
+
+  if (value && typeof value === "object") {
+    if (typeof value.value === "boolean") {
+      return value.value;
+    }
+
+    if (typeof value.value === "string") {
+      return value.value === "true";
+    }
+
+    if (typeof value.displayValue === "string") {
+      return value.displayValue === "true";
+    }
+  }
+
+  if (typeof value === "string") {
+    return value === "true";
+  }
+
+  return fallback;
+}
+
+function normalizeAssociationSelection(value) {
+  if (!Array.isArray(value)) {
+    return [];
+  }
+
+  return value
+    .map((item) => {
+      if (!item) {
+        return "";
+      }
+
+      if (typeof item === "string") {
+        return item;
+      }
+
+      if (typeof item.id !== "undefined" && item.id !== null) {
+        return String(item.id);
+      }
+
+      if (typeof item.value !== "undefined" && item.value !== null) {
+        return String(item.value);
+      }
+
+      return "";
+    })
+    .filter(Boolean);
+}
+
+function normalizeSingleAssociationSelection(value) {
+  if (!value) {
+    return "";
+  }
+
+  if (Array.isArray(value)) {
+    return normalizeAssociationSelection(value)[0] || "";
+  }
+
+  if (typeof value === "string") {
+    return value;
+  }
+
+  if (typeof value.id !== "undefined" && value.id !== null) {
+    return String(value.id);
+  }
+
+  if (typeof value.value !== "undefined" && value.value !== null) {
+    if (typeof value.value === "string") {
+      return value.value;
+    }
+
+    if (typeof value.value.id !== "undefined" && value.value.id !== null) {
+      return String(value.value.id);
+    }
+
+    return String(value.value);
+  }
+
+  return "";
+}
+
+function normalizeText(value) {
+  return String(value || "").trim().toLowerCase();
 }
 
 function formatEnumCaption(value) {
@@ -100,20 +202,39 @@ const selectStyles = {
   }),
   option: (base, state) => ({
     ...base,
-    backgroundColor: state.isSelected
-      ? "#0d6efd"
-      : state.isFocused
-        ? "#eff6ff"
-        : "#ffffff",
-    color: state.isSelected ? "#ffffff" : "#0f172a",
+    backgroundColor: state.isFocused ? "#eff6ff" : "#ffffff",
+    color: "#0f172a",
   }),
 };
+
+function MultiSelectOption(props) {
+  const { isSelected, label } = props;
+
+  return (
+    <components.Option {...props}>
+      <span className="edts-select-box__option-content">
+        <span
+          className={classNames("edts-select-box__option-checkbox", {
+            "edts-select-box__option-checkbox--checked": isSelected,
+          })}
+          aria-hidden="true"
+        >
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M3.5 8.5 6.5 11.5 12.5 4.5" />
+          </svg>
+        </span>
+        <span className="edts-select-box__option-label">{label}</span>
+      </span>
+    </components.Option>
+  );
+}
 
 export function EdtsSelectBox({
   selectType,
   associationValue,
   valueAttribute,
   optionsSource,
+  allowMultiple,
   optionLabelAttr,
   label,
   placeholder,
@@ -134,6 +255,10 @@ export function EdtsSelectBox({
   const [dirty, setDirty] = useState(false);
   const isAssociationMode = selectType === "association";
   const isBooleanMode = selectType === "boolean";
+  const isReferenceSetAssociation =
+    isAssociationMode && associationValue?.type === "ReferenceSet";
+  const isMultiAssociation =
+    isReferenceSetAssociation && isEnabled(allowMultiple);
   const currentValueSource = isAssociationMode
     ? associationValue
     : valueAttribute;
@@ -193,18 +318,59 @@ export function EdtsSelectBox({
     valueAttribute,
   ]);
 
-  const selectedValue = isAssociationMode
-    ? String(associationValue?.value?.id || "")
-    : getEditableValue(valueAttribute);
+  const selectedValue = useMemo(() => {
+    if (isAssociationMode) {
+      if (isMultiAssociation) {
+        return normalizeAssociationSelection(associationValue?.value);
+      }
+
+      return normalizeSingleAssociationSelection(associationValue?.value);
+    }
+
+    return getEditableValue(valueAttribute);
+  }, [associationValue, isAssociationMode, isMultiAssociation, valueAttribute]);
 
   const selectedOption = useMemo(() => {
+    if (isMultiAssociation) {
+      return options.filter(option => selectedValue.includes(option.value));
+    }
+
+    if (isAssociationMode) {
+      const associationLabel = getDisplayValue(valueAttribute);
+      const normalizedAssociationLabel = normalizeText(associationLabel);
+      const matchedOption = selectedValue
+        ? options.find((option) => option.value === selectedValue)
+        : null;
+
+      if (matchedOption) {
+        return matchedOption;
+      }
+
+      if (normalizedAssociationLabel) {
+        const matchedByLabel = options.find(
+          (option) => normalizeText(option.label) === normalizedAssociationLabel,
+        );
+
+        if (matchedByLabel) {
+          return matchedByLabel;
+        }
+      }
+
+      if (associationLabel) {
+        return {
+          label: associationLabel,
+          value: selectedValue || associationLabel,
+        };
+      }
+    }
+
     return options.find((option) => option.value === selectedValue) || null;
-  }, [options, selectedValue]);
+  }, [isAssociationMode, isMultiAssociation, options, selectedValue, valueAttribute]);
 
   const validationMessages = useMemo(() => {
     return getValidationMessages({
       required,
-      value: selectedValue,
+      value: Array.isArray(selectedValue) ? selectedValue.length : selectedValue,
       requiredMessage,
       mendixValidation: currentValueSource && currentValueSource.validation,
     });
@@ -222,7 +388,15 @@ export function EdtsSelectBox({
         typeof associationValue.setValue === "function" &&
         !associationValue.readOnly
       ) {
-        associationValue.setValue(nextOption ? nextOption.item : undefined);
+        if (isMultiAssociation) {
+          associationValue.setValue(
+            Array.isArray(nextOption) ? nextOption.map((option) => option.item) : [],
+          );
+        } else if (isReferenceSetAssociation) {
+          associationValue.setValue(nextOption ? [nextOption.item] : []);
+        } else {
+          associationValue.setValue(nextOption ? nextOption.item : undefined);
+        }
       }
     } else if (
       valueAttribute &&
@@ -261,7 +435,8 @@ export function EdtsSelectBox({
     >
       {label ? (
         <label className="edts-select-box__label" htmlFor={inputId}>
-          {label}
+          <span>{label}</span>
+          {required ? <span className="edts-select-box__required">*</span> : null}
         </label>
       ) : null}
       <div className="edts-select-box__control">
@@ -269,20 +444,24 @@ export function EdtsSelectBox({
           className="edts-select-box__native-validator"
           tabIndex={-1}
           autoComplete="off"
-          value={selectedValue}
+          value={Array.isArray(selectedValue) ? selectedValue.join(",") : selectedValue}
           onChange={() => undefined}
           onInvalid={handleInvalid}
-          required={Boolean(required)}
+          required={isEnabled(required)}
           aria-hidden="true"
         />
         <Select
           inputId={inputId}
           classNamePrefix="edts-select-box__react-select"
+          components={isMultiAssociation ? { Option: MultiSelectOption } : undefined}
           options={options}
           value={selectedOption}
           placeholder={placeholder || "Choose an option"}
-          isClearable={Boolean(isClearable)}
-          isSearchable={Boolean(isSearchable)}
+          isClearable={isEnabled(isClearable, true)}
+          isSearchable={isEnabled(isSearchable, true)}
+          isMulti={isMultiAssociation}
+          closeMenuOnSelect={!isMultiAssociation}
+          hideSelectedOptions={false}
           isDisabled={readOnly}
           onChange={handleChange}
           onBlur={handleBlur}

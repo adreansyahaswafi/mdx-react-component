@@ -54,6 +54,7 @@ export function getProperties(values, defaultProperties, target) {
 
     if (values.pickerMode !== "range" && defaultProperties.properties) {
         delete defaultProperties.properties.endPlaceholderText;
+        delete defaultProperties.properties.rangeDisplayMode;
     }
 
     return defaultProperties;

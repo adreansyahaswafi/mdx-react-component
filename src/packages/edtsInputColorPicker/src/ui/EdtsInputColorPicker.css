@@ -1,0 +1,125 @@
+.edts-input-color-picker {
+    width: 100%;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+    margin-bottom: 20px;
+}
+
+.edts-input-color-picker__label {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 700;
+    color: #334155;
+    line-height: 1.4;
+}
+
+.edts-input-color-picker__required {
+    color: #dc3545;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.edts-input-color-picker__control {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    min-height: 48px;
+    padding: 8px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 12px;
+    background: #ffffff;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.edts-input-color-picker__control:focus-within {
+    border-color: #86b7fe;
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.2);
+}
+
+.edts-input-color-picker__control.is-invalid {
+    border-color: #dc3545;
+    box-shadow: 0 0 0 0.18rem rgba(220, 53, 69, 0.16);
+}
+
+.edts-input-color-picker__native {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    width: 44px;
+    height: 100%;
+    cursor: pointer;
+}
+
+.edts-input-color-picker__swatch {
+    width: 28px;
+    height: 28px;
+    border-radius: 10px;
+    border: 1px solid rgba(15, 23, 42, 0.12);
+    background: var(--edts-input-color-picker-value, #2563eb);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+    flex: 0 0 auto;
+}
+
+.edts-input-color-picker__field {
+    width: 100%;
+    min-height: 30px;
+    border: 0;
+    background: transparent;
+    box-shadow: none !important;
+    padding: 0;
+    color: #0f172a;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.edts-input-color-picker__field::placeholder {
+    color: #94a3b8;
+}
+
+.edts-input-color-picker__field:focus {
+    outline: none;
+}
+
+.edts-input-color-picker__field.is-invalid {
+    background-image: none;
+}
+
+.edts-input-color-picker--readonly .edts-input-color-picker__control {
+    background: #f8f9fa;
+}
+
+.edts-input-color-picker--readonly .edts-input-color-picker__native {
+    pointer-events: none;
+}
+
+.edts-input-color-picker__messages,
+.edts-input-color-picker__helper {
+    width: 100%;
+}
+
+.edts-input-color-picker__message {
+    display: block;
+    margin-top: 0;
+    width: 100%;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: #dc3545;
+}
+
+.edts-input-color-picker__helper {
+    font-size: 12px;
+    line-height: 1.5;
+    color: #6c757d;
+}
+
+.edts-input-color-picker__message.invalid-feedback {
+    display: block;
+    margin-top: 0;
+}

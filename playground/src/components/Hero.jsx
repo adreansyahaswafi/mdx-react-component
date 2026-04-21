@@ -19,7 +19,7 @@ export function Hero() {
       </div>
       <div className="playground-hero__meta">
         <div className="playground-stat">
-          <strong>8</strong>
+          <strong>12</strong>
           <span>widgets demoed</span>
         </div>
         <div className="playground-stat">
